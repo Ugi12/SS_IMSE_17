@@ -1,6 +1,8 @@
 ### Eclipse ###
 
-.metadata/
+
+.classpath
+.metadata
 bin/
 tmp/
 *.tmp
