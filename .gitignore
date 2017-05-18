@@ -1,6 +1,6 @@
 ### Eclipse ###
 
-.metadata
+.metadata/
 bin/
 tmp/
 *.tmp
@@ -56,4 +56,5 @@ local.properties
 
 # JDT-specific (Eclipse Java Development Tools)		
 .classpath
-/build/
+
+Servers/
