@@ -12,7 +12,7 @@ public class Cart implements Serializable {
 	
 	
 	private int id;
-	private Date date;
+	private Date created;
 	private int customerid;
 	
 	
@@ -28,18 +28,9 @@ public class Cart implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	/**
-	 * @return the date
-	 */
-	public Date getDate() {
-		return date;
-	}
-	/**
-	 * @param date the date to set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
-	}
+
 	/**
 	 * @return the customerid
 	 */
@@ -51,6 +42,18 @@ public class Cart implements Serializable {
 	 */
 	public void setCustomerid(int customerid) {
 		this.customerid = customerid;
+	}
+	/**
+	 * @return the created
+	 */
+	public Date getCreated() {
+		return created;
+	}
+	/**
+	 * @param created the created to set
+	 */
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 }

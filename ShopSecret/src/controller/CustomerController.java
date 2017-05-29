@@ -6,27 +6,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.DefaultButtonModel;
 
 import dao.DBManager;
 
-
 /**
- * Servlet implementation class Helloworld
+ * Servlet implementation class CustomerController
  */
-@WebServlet("/Helloworld")
-public class Helloworld extends HttpServlet {
+@WebServlet("/customer/*")
+public class CustomerController extends HttpServlet {
+	
+	
+	private DBManager db = DBManager.getInstance();
+	
 	private static final long serialVersionUID = 1L;
-//	private DBManager db = DBManager.getInstance();   
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in helloworld servlet");
-//		request.setAttribute("allCustomer", db.getCustomerDAO().findAll());
+		// TODO Auto-generated method stub
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setAttribute("customer", db.getCustomerDAO().findById(1));
 		request.getRequestDispatcher("/WEB-INF/helloworld.jsp").forward(request, response);
 	}
 
-	
 
 }

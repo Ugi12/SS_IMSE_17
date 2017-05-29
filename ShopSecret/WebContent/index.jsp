@@ -1,3 +1,3 @@
 <%
-	response.sendRedirect("Helloworld");
+	response.sendRedirect("customer");
 %>
