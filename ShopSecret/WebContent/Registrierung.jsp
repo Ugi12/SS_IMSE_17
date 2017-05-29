@@ -67,8 +67,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--banner-->
 <div class="banner-top">
 	<div class="container">
-		<h1>Registrierung</h1>
-		<em></em>
 		<h1><a href="Registrierung.jsp">Registrierung</a></h1>
 	</div>
 </div>
