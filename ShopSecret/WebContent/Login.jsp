@@ -77,10 +77,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<form>
 			<div class="col-md-6 login-do">
 				<div class="login-mail">
-					<input type="text" placeholder="Email" required="">
+					<input type="text" placeholder="Email" required="" name="LoginEmail">
 				</div>
 				<div class="login-mail">
-					<input type="password" placeholder="Passwort" required="">
+					<input type="password" placeholder="Passwort" required="" name="LoginPasswort">
 				</div>
 				<label class="hvr-skew-backward">
 					<input type="submit" value="Einloggen">
