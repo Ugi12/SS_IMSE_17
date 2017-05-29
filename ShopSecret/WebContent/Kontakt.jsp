@@ -1,11 +1,11 @@
 <!--
-Layout für Registrierung-Seite
+Layout für Kontakt-Seite
 @author Julian Thaler
 -->
 <!DOCTYPE html>
 <html>
 <head>
-<title>Registrierung Template</title>
+<title>Kontakt Template</title>
 <link href="CSS/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="CSS/style.css" rel="stylesheet" type="text/css" media="all" />	
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,35 +67,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--banner-->
 <div class="banner-top">
 	<div class="container">
-		<h1><a href="Registrierung.jsp">Registrierung</a></h1>
+		<h1><a href="Kontakt.jsp">Kontakt</a></h1>
 	</div>
 </div>
 <!--login-->
 <div class="container">
-		<div class="Registrierung">
+		<div class="Kontakt">
 		
 			<form>
-			<div class="col-md-6 login-do">
-				<div class="login-mail">
-					<input type="text" placeholder="Name" required="" name="RegisterName">
-				</div>
-				<div class="login-mail">
-					<input type="text" placeholder="Email" required="" name="RegisterEmail">
-				</div>
-				<div class="login-mail">
-					<input type="password" placeholder="Passwort" required="" name="RegisterPasswort">
-				</div>
-				<div class="login-mail">
-					<input type="password" placeholder="Passwort wiederholen" required="" name="RegisterPasswort2">
-				</div>
-				<label class="hvr-skew-backward">
-					<input type="submit" value="Registrieren">
-				</label>
+			<div class="col-md-6 login-right">
+				 <h3>Kontakt zu den Entwicklern bei Fragen:</h3>
+				 
+				 <p>
+				 Julian Thaler: a1228747@unet.univie.ac.at
+				 </p>
+				 <p>
+				 Ugur Yürük: 
+				 </p>
 			</div>
-			<div class="clearfix"> </div>
-			</form>
-		</div>
-
 </div>
 </body>
 </html>

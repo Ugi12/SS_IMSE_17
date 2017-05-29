@@ -52,10 +52,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
         <ul class="nav navbar-nav nav_1">
             <li><a class="color" href="Home.jsp">Home</a></li>
-            <li><a class="color" href="Men.jsp">Men</a></li>
-            <li><a class="color" href="Women.jsp">Women</a></li>
-            <li><a class="color" href="Contact.jsp">Contact</a></li>
-            <li><a class="color" href="About.jsp">About</a></li>
+            <li><a class="color" href="Männer.jsp">Männer</a></li>
+            <li><a class="color" href="Frauen.jsp">Frauen</a></li>
+            <li><a class="color" href="Kontakt.jsp">Kontakt</a></li>
+            <li><a class="color" href="ÜberUns.jsp">Über uns</a></li>
         </ul>
      </div>
 
@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--login-->
 <div class="container">
-		<div class="login">
+		<div class="Login">
 		
 			<form>
 			<div class="col-md-6 login-do">

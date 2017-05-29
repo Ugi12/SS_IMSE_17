@@ -1,11 +1,11 @@
 <!--
-Layout für Registrierung-Seite
+Layout für ÜberUns-Seite
 @author Julian Thaler
 -->
 <!DOCTYPE html>
 <html>
 <head>
-<title>Registrierung Template</title>
+<title>ÜberUns Template</title>
 <link href="CSS/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="CSS/style.css" rel="stylesheet" type="text/css" media="all" />	
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,35 +67,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--banner-->
 <div class="banner-top">
 	<div class="container">
-		<h1><a href="Registrierung.jsp">Registrierung</a></h1>
+		<h1><a href="ÜberUns.jsp">Über uns</a></h1>
 	</div>
 </div>
 <!--login-->
 <div class="container">
-		<div class="Registrierung">
+		<div class="ÜberUns">
 		
 			<form>
-			<div class="col-md-6 login-do">
-				<div class="login-mail">
-					<input type="text" placeholder="Name" required="" name="RegisterName">
-				</div>
-				<div class="login-mail">
-					<input type="text" placeholder="Email" required="" name="RegisterEmail">
-				</div>
-				<div class="login-mail">
-					<input type="password" placeholder="Passwort" required="" name="RegisterPasswort">
-				</div>
-				<div class="login-mail">
-					<input type="password" placeholder="Passwort wiederholen" required="" name="RegisterPasswort2">
-				</div>
-				<label class="hvr-skew-backward">
-					<input type="submit" value="Registrieren">
-				</label>
+			<div class="col-md-6 login-right">
+				 <h3>Informationen über unser Projekt:</h3>
+				 
+				 <p>Wir entwickeln unseren Shop "ShopSecret" im Zuge eines Projekts in der Lehrveranstaltung 
+				 "Information Management and System Engineering. Weitere Details folgen..."
+				 </p>
 			</div>
-			<div class="clearfix"> </div>
-			</form>
-		</div>
-
 </div>
 </body>
 </html>
