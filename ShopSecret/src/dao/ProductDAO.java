@@ -5,10 +5,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Customer;
-import model.Orderr;
 import model.Product;
 
+
+/**
+ * <h1> ProductDAO</h1>
+ * CRUD-Funktions for Admin
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class ProductDAO implements DAO<Product> {
 
 	

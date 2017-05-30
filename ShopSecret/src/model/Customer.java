@@ -1,8 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Customer {
+/**
+ * @author Ugur Yürük
+ */
+public class Customer implements Serializable{
+	
+
+	private static final long serialVersionUID = 1L;
 	
 	private int id;
 	private String email;

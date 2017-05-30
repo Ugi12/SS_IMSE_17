@@ -5,10 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Customer;
-import model.Lineitem;
 import model.Orderr;
 
+/**
+ * <h1> OrderrDAO</h1>
+ * CRUD-Funktions for Customers order
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class OrderrDAO implements DAO<Orderr> {
 
 	

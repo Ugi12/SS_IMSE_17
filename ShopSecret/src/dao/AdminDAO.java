@@ -6,9 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Admin;
-import model.Customer;
-import model.Supplier;
 
+
+/**
+ * <h1> AdminDao</h1>
+ * CRUD-Funktions for Admin
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class AdminDAO implements DAO<Admin> {
 
 	private DBManager db;

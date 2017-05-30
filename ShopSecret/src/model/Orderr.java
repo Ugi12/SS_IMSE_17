@@ -3,6 +3,9 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Ugur Yürük
+ */
 public class Orderr implements Serializable {
 
 	/**

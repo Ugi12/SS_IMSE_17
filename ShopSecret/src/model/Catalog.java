@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * @author Ugur Yürük
+ */
 public class Catalog implements Serializable {
 
 	/**

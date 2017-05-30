@@ -5,9 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Customer;
 import model.Lineitem;
 
+/**
+ * <h1> Lineitem</h1>
+ * CRUD-Funktions for Line items
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class LineitemDAO implements DAO<Lineitem> {
 
 	

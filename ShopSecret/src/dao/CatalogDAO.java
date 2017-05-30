@@ -5,9 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Cart;
 import model.Catalog;
 
+/**
+ * <h1> CatalogDao</h1>
+ * CRUD-Funktions for Catalog elements
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class CatalogDAO implements DAO<Catalog> {
 
 	

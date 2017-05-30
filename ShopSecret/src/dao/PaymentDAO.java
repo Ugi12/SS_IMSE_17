@@ -5,10 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Customer;
-import model.Orderr;
 import model.Payment;
 
+/**
+ * <h1> PaymentDAO</h1>
+ * CRUD-Funktions for Payment
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class PaymentDAO implements DAO<Payment> {
 
 	

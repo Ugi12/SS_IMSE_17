@@ -5,10 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Customer;
-import model.Product;
 import model.Supplier;
 
+/**
+ * <h1> SupplierDAO</h1>
+ * CRUD-Funktions for Supplier
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class SupplierDAO implements DAO<Supplier> {
 
 	

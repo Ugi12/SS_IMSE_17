@@ -5,8 +5,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Customer;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
+
+import model.Customer;
+/**
+ * <h1> CustomerDao</h1>
+ * CRUD-Funktions for Customer
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class CustomerDAO implements DAO<Customer>{
 
 	private DBManager db;
@@ -16,8 +25,35 @@ public class CustomerDAO implements DAO<Customer>{
 	}
 
 	@Override
-	public void create(Customer object) {
-		// TODO Auto-generated method stub
+	public void create(Customer c) {
+		if (c == null)
+			throw new IllegalArgumentException("object missing");
+		if (c.getEmail() == null || c.getEmail().trim().length() < 3)
+			throw new IllegalArgumentException("email too short");
+		if (c.getPassword() == null || c.getPassword().trim().length() < 3)
+			throw new IllegalArgumentException("password too short");
+		if (c.getFirstname() == null || c.getFirstname().trim().length() < 3)
+			throw new IllegalArgumentException("firstname too short");
+		if (c.getLastname() == null || c.getLastname().trim().length() < 3)
+			throw new IllegalArgumentException("lastname too short");
+		if (c.getAddress() == null || c.getAddress().trim().length() < 3)
+			throw new IllegalArgumentException("address too short");
+		if (c.getCity() == null || c.getCity().trim().length() < 3)
+			throw new IllegalArgumentException("city too short");
+		if (c.getCountry() == null || c.getCountry().trim().length() < 3)
+			throw new IllegalArgumentException("country too short");
+
+
+		
+		//String sql = null +",'"+ c.getEmail()+"','"+c.getPassword()+"', '"+c.getFirstname()+"','"+ c.getLastname()+"','"+c.getAddress()+"','"+c.getCity()+"','"+c.getCountry()+"'");
+		//TODO wird noch gemacht
+		try {
+			db.getConnection().createStatement().executeUpdate("INSERT INTO customer VALUES("+ null +",'"+ c.getEmail()+"','"+c.getPassword()+"', '"+c.getFirstname()+"','"+ c.getLastname()+"','"+c.getAddress()+"','"+c.getCity()+"','"+c.getCountry()+"')");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("email already in use");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

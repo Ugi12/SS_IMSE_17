@@ -2,6 +2,11 @@ package dao;
 
 import java.util.List;
 
+/**
+ * <h1> DAO-Interface</h1>	
+ * 
+ * @author Ugur Yürük
+ */
 public interface DAO<T> {
 
 	/**
