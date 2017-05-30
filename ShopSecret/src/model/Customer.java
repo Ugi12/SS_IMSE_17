@@ -14,6 +14,7 @@ public class Customer implements Serializable{
 	private int id;
 	private String email;
 	private String password;
+	private String password2;
 	private Date birthday;
 	private String firstname;
 	private String lastname;
@@ -85,6 +86,19 @@ public class Customer implements Serializable{
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	/**
+	 * @return the password2
+	 */
+	public String getPassword2() {
+		return password2;
+	}
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}
 	/**
 	 * @return the birthday
