@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CustomerDAO;
+
 @WebServlet("/RegistrierungController")
 public class RegistrierungController extends HttpServlet {
 
@@ -22,27 +24,32 @@ public class RegistrierungController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Benutzerverwaltung benutzerverwaltung = new Benutzerverwaltung();
+		CustomerDAO customerdao = new CustomerDAO(null);
 		
-		String RegisterName =request.getParameter("RegisterName");
-		String RegisterEmail =request.getParameter("RegisterEmail");
-		String RegisterPasswort =request.getParameter("RegisterPasswort");
-		String RegisterPasswort2 = request.getParameter("RegisterPasswort2");
+		String firstname =request.getParameter("Vorname");
+		String lastname =request.getParameter("Nachname");
+		String email =request.getParameter("RegisterEmail");
+		String birthday =request.getParameter("Geburtstag");
+		String adress =request.getParameter("Adresse");
+		String city =request.getParameter("Stadt");
+		String country =request.getParameter("Land");
+		String password =request.getParameter("Passwort");
+		String password2 = request.getParameter("Passwort2");
 		HttpSession session = request.getSession();
 		
 		
-		if(!RegisterPasswort.equals(RegisterPasswort2)){
+		if(!password.equals(password2)){
 			throw new ServletException("Passwörter sind nicht gleich!");
 		}
 		
-		for (int i = 0; i<benutzerverwaltung.getAlleBenutzer().size();i++) {
-			if(benutzerverwaltung.getAlleBenutzer().get(i).getBenutzerName().equals(RegisterName)) {
+		for (int i = 0; i<customerdao.findAll().size();i++) {
+			if(customerdao.findAll().get(i).getLastname().equals(lastname)) {
 				throw new ServletException("Benutzer mit diesem Namen gibt es schon!");
 			}
 		}
 
-		for (int i = 0; i<benutzerverwaltung.getAlleBenutzer().size();i++) {
-			if(benutzerverwaltung.getAlleBenutzer().get(i).getEmailAdresse().equals(RegisterEmail)) {
+		for (int i = 0; i<customerdao.findAll().size();i++) {
+			if(customerdao.findAll().get(i).getEmail().equals(email)) {
 				throw new ServletException("Benutzer mit dieser E-Mail gibt es schon!");
 			}
 		}

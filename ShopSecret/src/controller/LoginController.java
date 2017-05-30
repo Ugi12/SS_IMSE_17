@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CustomerDAO;
+
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 
@@ -27,16 +29,13 @@ public class LoginController extends HttpServlet {
 	
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Benutzerverwaltung benutzerverwaltung = new Benutzerverwaltung();
+
+		CustomerDAO customerdao = new CustomerDAO(null);
+		
 		String LoginEmail =request.getParameter("LoginName");
 		String LoginPasswort =request.getParameter("LoginPasswort");
 		HttpSession session = request.getSession();
-		
-		int id = 0;
-		boolean anmelden = benutzerverwaltung.anmelden(LoginEmail, LoginPasswort);
-		if (anmelden == false) {
-			throw new ServletException("Name und Passwort stimmen nicht überein oder sie existieren nicht!");
-		}	
+			
 	}
 
 }
