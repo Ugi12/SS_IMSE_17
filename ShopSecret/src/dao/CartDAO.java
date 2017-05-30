@@ -8,7 +8,13 @@ import java.util.List;
 
 import model.Cart;
 import model.Customer;
-
+/**
+ * <h1> CartDao</h1>
+ * CRUD-Funktions for Cart elements
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class CartDAO implements DAO<Cart> {
 
 	private DBManager db;

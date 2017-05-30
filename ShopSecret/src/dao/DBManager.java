@@ -5,7 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-
+/**
+ * <h1> Database Manager</h1>
+ * CRUD-Funktions for Admin
+ * included DB-query	
+ * 
+ * @author Ugur Yürük
+ */
 public class DBManager {
 
 	private static DBManager instance = new DBManager();
@@ -50,7 +56,7 @@ public class DBManager {
 	}
 
 	/**
-	 * liefert ein instanz dieser klasse
+	 * return a instance of this class
 	 * 
 	 * @return instance
 	 */
@@ -59,9 +65,8 @@ public class DBManager {
 	}
 
 	/**
-	 * liefert eine verbindung zur datenbank. falls noch keine verbindung zur db
-	 * besteht, wird versucht eine neue verbindung aufzubauen: dbexception bei
-	 * fehler
+	 * return a database connection
+	 * if no database connection exist then open new connection
 	 * 
 	 * @throws DBException
 	 *             bei fehler bei verbindungsaufbau

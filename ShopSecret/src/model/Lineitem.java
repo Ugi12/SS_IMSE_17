@@ -2,11 +2,13 @@ package model;
 
 import java.io.Serializable;
 
+
+/**
+ * @author Ugur Yürük
+ */
 public class Lineitem implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	private int id;

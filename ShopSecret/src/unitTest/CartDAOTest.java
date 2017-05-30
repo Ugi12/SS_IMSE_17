@@ -6,6 +6,9 @@ import dao.DBManager;
 import junit.framework.TestCase;
 import model.Cart;
 
+/**
+ * @author Ugur Yürük
+ */
 public class CartDAOTest extends TestCase{
 	
 	private DBManager db = DBManager.getInstance();
