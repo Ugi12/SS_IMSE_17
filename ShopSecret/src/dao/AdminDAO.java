@@ -1,8 +1,13 @@
 package dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Admin;
+import model.Customer;
+import model.Supplier;
 
 public class AdminDAO implements DAO<Admin> {
 
@@ -26,8 +31,18 @@ public class AdminDAO implements DAO<Admin> {
 
 	@Override
 	public List<Admin> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Admin> output = new ArrayList<>();
+		try {
+			ResultSet result = db.getConnection().createStatement()
+					.executeQuery("select * from admin order by username");
+
+			while (result.next())
+				output.add(parse(result));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return output;
 	}
 
 	@Override
@@ -40,6 +55,14 @@ public class AdminDAO implements DAO<Admin> {
 	public void delete(Admin object) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private Admin parse(ResultSet result) throws SQLException {
+		Admin admin = new Admin();
+		admin.setUsername(result.getString("username"));
+		admin.setPassword(result.getString("password"));
+
+		return admin;
 	}
 
 }

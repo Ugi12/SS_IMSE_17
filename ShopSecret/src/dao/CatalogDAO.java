@@ -1,7 +1,11 @@
 package dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Cart;
 import model.Catalog;
 
 public class CatalogDAO implements DAO<Catalog> {
@@ -22,14 +26,24 @@ public class CatalogDAO implements DAO<Catalog> {
 
 	@Override
 	public Catalog findById(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public List<Catalog> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Catalog> output = new ArrayList<>();
+		try {
+			ResultSet result = db.getConnection().createStatement()
+					.executeQuery("select * from catalog order by name");
+
+			while (result.next())
+				output.add(parse(result));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return output;
 	}
 
 	@Override
@@ -43,5 +57,14 @@ public class CatalogDAO implements DAO<Catalog> {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private Catalog parse(ResultSet result) throws SQLException {
+		Catalog catalog = new Catalog();
+		catalog.setName(result.getString("name"));
+		catalog.setArticlequantity(result.getInt("ArticleQuantity"));
+	
+		return catalog;
+	}
+
 
 }

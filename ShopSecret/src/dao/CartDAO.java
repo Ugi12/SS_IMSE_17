@@ -2,10 +2,12 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 import model.Cart;
+import model.Customer;
 
 public class CartDAO implements DAO<Cart> {
 
@@ -38,8 +40,18 @@ public class CartDAO implements DAO<Cart> {
 
 	@Override
 	public List<Cart> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cart> output = new ArrayList<>();
+		try {
+			ResultSet result = db.getConnection().createStatement()
+					.executeQuery("select * from cart order by id");
+
+			while (result.next())
+				output.add(parse(result));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return output;
 	}
 
 	@Override

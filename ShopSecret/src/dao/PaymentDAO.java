@@ -1,7 +1,12 @@
 package dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Customer;
+import model.Orderr;
 import model.Payment;
 
 public class PaymentDAO implements DAO<Payment> {
@@ -21,14 +26,33 @@ public class PaymentDAO implements DAO<Payment> {
 
 	@Override
 	public Payment findById(int id) {
-		// TODO Auto-generated method stub
+		try {
+			ResultSet result = db.getConnection().createStatement()
+					.executeQuery("SELECT * FROM payment WHERE id=" +id);
+
+			if (result.next())
+				return parse(result);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public List<Payment> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Payment> output = new ArrayList<>();
+		try {
+			ResultSet result = db.getConnection().createStatement()
+					.executeQuery("select * from payment order by id");
+
+			while (result.next())
+				output.add(parse(result));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return output;
 	}
 
 	@Override
@@ -41,6 +65,16 @@ public class PaymentDAO implements DAO<Payment> {
 	public void delete(Payment object) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private Payment parse(ResultSet result) throws SQLException {
+		Payment payment = new Payment();
+		payment.setId(result.getInt("id"));
+		payment.setDetails(result.getString("details"));
+		payment.setTotal(result.getFloat("total"));
+		payment.setCustomerid(result.getInt("customerid"));
+
+		return payment;
 	}
 
 }
