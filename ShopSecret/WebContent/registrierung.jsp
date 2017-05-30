@@ -1,5 +1,5 @@
 <!--
-Layout für Registrierung-Seite
+Layout für Registrierung-Seite 
 @author Julian Thaler
 -->
 <!DOCTYPE html>
