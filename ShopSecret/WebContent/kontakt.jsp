@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 Julian Thaler: a1228747@unet.univie.ac.at
 				 </p>
 				 <p>
-				 Ugur Yürük: 
+				 Ugur Yürük: a1401783@unet.univie.ac.at
 				 </p>
 			</div>
 </div>

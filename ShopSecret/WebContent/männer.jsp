@@ -1,5 +1,5 @@
 <!--
-Layout für Home-Seite
+Layout für Männer-Seite
 @author Julian Thaler
 -->
 <!DOCTYPE html>
@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--banner-->
 <div class="banner-top">
 	<div class="container">
-		<h1><a href="home.jsp">Home</a></h1>
+		<h1><a href="home.jsp">Männer</a></h1>
 		<img src="Images/back.jpg" class="img-responsive" alt="">
 	</div>
 </div>
