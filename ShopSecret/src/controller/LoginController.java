@@ -1,4 +1,4 @@
-package servlets;
+package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/LoginController")
+public class LoginController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	public LoginServlet() {
+	public LoginController() {
         super();
     }
 	

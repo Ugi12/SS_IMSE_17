@@ -24,7 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 		<div class="head">
 			<div class=" logo">
-				<a href="Login.jsp"><img src="Images/logo1.png" alt=""></a>	
+				<a href="login.jsp"><img src="Images/logo1.png" alt=""></a>	
 			</div>
 		</div>
 	</div>
@@ -32,9 +32,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 		<div class="col-sm-5 col-md-offset-2  header-login">
 					<ul >
-						<li><a href="Login.jsp">Login</a></li>
-						<li><a href="Registrierung.jsp">Registrieren</a></li>
-						<li><a href="Logout.jsp">Logout</a></li>
+						<li><a href="login.jsp">Login</a></li>
+						<li><a href="registrierung.jsp">Registrieren</a></li>
+						<li><a href="logout.jsp">Logout</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -51,11 +51,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
         <ul class="nav navbar-nav nav_1">
-            <li><a class="color" href="Home.jsp">Home</a></li>
-            <li><a class="color" href="Männer.jsp">Männer</a></li>
-            <li><a class="color" href="Frauen.jsp">Frauen</a></li>
-            <li><a class="color" href="Kontakt.jsp">Kontakt</a></li>
-            <li><a class="color" href="ÜberUns.jsp">Über uns</a></li>
+            <li><a class="color" href="home.jsp">Home</a></li>
+            <li><a class="color" href="männer.jsp">Männer</a></li>
+            <li><a class="color" href="frauen.jsp">Frauen</a></li>
+            <li><a class="color" href="kontakt.jsp">Kontakt</a></li>
+            <li><a class="color" href="about.jsp">Über uns</a></li>
         </ul>
      </div>
 
@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--banner-->
 <div class="banner-top">
 	<div class="container">
-		<h1><a href="ÜberUns.jsp">Über uns</a></h1>
+		<h1><a href="about.jsp">Über uns</a></h1>
 	</div>
 </div>
 <!--login-->
