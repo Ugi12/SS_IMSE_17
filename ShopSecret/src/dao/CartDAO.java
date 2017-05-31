@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import model.Cart;
-import model.Customer;
 /**
  * <h1> CartDao</h1>
  * CRUD-Funktions for Cart elements
@@ -24,8 +24,20 @@ public class CartDAO implements DAO<Cart> {
 	}
 	
 	@Override
-	public void create(Cart object) {
-		// TODO Auto-generated method stub
+	public void create(Cart c) {
+		if (c == null)
+			throw new IllegalArgumentException("object missing");
+
+		
+		String sql = (null+", "+null+", '"+c.getCustomerid()+"'");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("INSERT INTO cart(id,created,customerid) VALUES("+ sql +");");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Cart already in use");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

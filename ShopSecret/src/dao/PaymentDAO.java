@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import model.Payment;
 
 /**
@@ -25,7 +27,21 @@ public class PaymentDAO implements DAO<Payment> {
 	
 	@Override
 	public void create(Payment object) {
-		// TODO Auto-generated method stub
+		if (object == null)
+			throw new IllegalArgumentException("object missing");
+		if (object.getDetails() == null || object.getDetails().length() < 3)
+			throw new IllegalArgumentException("details too short");
+
+		
+		String sql = (null+", '"+object.getDetails()+"', '"+object.getTotal()+"', "+null+",'"+object.getCustomerid()+"'");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("INSERT INTO payment(id,details,total,paiddate,customerid) VALUES("+ sql +");");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("payment error");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

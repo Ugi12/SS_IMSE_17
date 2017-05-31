@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import model.Lineitem;
 
 /**
@@ -26,7 +28,24 @@ public class LineitemDAO implements DAO<Lineitem> {
 	
 	@Override
 	public void create(Lineitem object) {
-		// TODO Auto-generated method stub
+		if (object == null)
+			throw new IllegalArgumentException("object missing");
+		if (object.getName() == null || object.getName().trim().length() < 3)
+			throw new IllegalArgumentException("name too short");
+
+		
+		String sql = (null+", '"+object.getName()+"', '"+object.getQuantity() +"','"+object.getPrice()+"', "
+						  		+ "'"+object.getCartid()+"'");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("INSERT INTO lineitem(id,name,quantity,price,cartid) VALUES("+ sql +");");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			System.out.println(e.getMessage());
+			throw new IllegalArgumentException("item already in use");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

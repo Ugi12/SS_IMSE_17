@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import model.Supplier;
 
 /**
@@ -26,8 +28,22 @@ public class SupplierDAO implements DAO<Supplier> {
 	
 	
 	@Override
-	public void create(Supplier object) {
-		// TODO Auto-generated method stub
+	public void create(Supplier s) {
+		if (s == null)
+			throw new IllegalArgumentException("object missing");
+		if (s.getName() == null || s.getName().trim().length() < 3)
+			throw new IllegalArgumentException("email too short");
+
+		
+		String sql = (null+", '"+s.getName()+"'");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("INSERT INTO supplier(id,name) VALUES("+ sql +");");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Supplier already in use");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

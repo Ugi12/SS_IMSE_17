@@ -45,10 +45,12 @@ public class CustomerDAO implements DAO<Customer>{
 
 
 		
-		//String sql = null +",'"+ c.getEmail()+"','"+c.getPassword()+"', '"+c.getFirstname()+"','"+ c.getLastname()+"','"+c.getAddress()+"','"+c.getCity()+"','"+c.getCountry()+"'");
-		//TODO wird noch gemacht
+		String sql = (null+", '"+c.getEmail()+"', '"+c.getPassword()+"', '"+c.getFirstname() +"','"+c.getLastname()+"', "
+						  		+ "'"+c.getAddress()+"', '"+c.getCity()+"', '"+c.getCountry()+"','"+0+"'");
+		
 		try {
-			db.getConnection().createStatement().executeUpdate("INSERT INTO customer VALUES("+ null +",'"+ c.getEmail()+"','"+c.getPassword()+"', '"+c.getFirstname()+"','"+ c.getLastname()+"','"+c.getAddress()+"','"+c.getCity()+"','"+c.getCountry()+"')");
+			db.getConnection().createStatement().executeUpdate("INSERT INTO customer(id,email,password,firstname,"
+															+ "lastname,address,city,country,isclosed) VALUES("+ sql +");");
 		} catch (MySQLIntegrityConstraintViolationException e) {
 			throw new IllegalArgumentException("email already in use");
 		} catch (SQLException e) {
@@ -106,12 +108,10 @@ public class CustomerDAO implements DAO<Customer>{
 		customer.setFirstname(result.getString("firstname"));
 		customer.setLastname(result.getString("lastname"));
 		customer.setAddress(result.getString("address"));
-		customer.setBirthday(result.getDate("birthday"));
 		customer.setCity(result.getString("city"));
 		customer.setCountry(result.getString("country"));
 		customer.setEmail(result.getString("email"));
 		customer.setIsClosed(result.getBoolean("isclosed"));
-		customer.setOpen(result.getBoolean("open"));
 		customer.setPassword(result.getString("password"));
 
 		return customer;

@@ -12,9 +12,12 @@ public class Lineitem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
+	private String name;
 	private int quantity;
 	private float price;
 	private int cartid;
+	
+	
 	/**
 	 * @return the id
 	 */
@@ -62,6 +65,18 @@ public class Lineitem implements Serializable {
 	 */
 	public void setCartid(int cartid) {
 		this.cartid = cartid;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	

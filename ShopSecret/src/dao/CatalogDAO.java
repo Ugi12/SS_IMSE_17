@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import model.Catalog;
 
 /**
@@ -26,7 +28,22 @@ public class CatalogDAO implements DAO<Catalog> {
 	
 	@Override
 	public void create(Catalog object) {
-		// TODO Auto-generated method stub
+		if (object == null)
+			throw new IllegalArgumentException("object missing");
+		if (object.getName() == null || object.getName().trim().length() < 3)
+			throw new IllegalArgumentException("catalogname is too short");
+		
+		
+		String sql = ("'"+object.getName()+"', '"+object.getArticlequantity()+"'");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("INSERT INTO catalog(name,ArticleQuantity) VALUES("+ sql +");");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("catalog name is already in use");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		
 	}
 

@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import model.Product;
 
 
@@ -25,8 +27,22 @@ public class ProductDAO implements DAO<Product> {
 	}
 	
 	@Override
-	public void create(Product object) {
-		// TODO Auto-generated method stub
+	public void create(Product p) {
+		if (p == null)
+			throw new IllegalArgumentException("object missing");
+		if (p.getName() == null || p.getName().trim().length() < 3)
+			throw new IllegalArgumentException("email too short");
+
+		
+		String sql = (null+", '"+p.getName()+"', '"+p.getPrice()+"', '"+p.getSupplierid()+"'");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("INSERT INTO product(id,name,price,supplierid) VALUES("+ sql +");");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Product already in use");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

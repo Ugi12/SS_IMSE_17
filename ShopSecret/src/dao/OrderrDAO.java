@@ -2,8 +2,11 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import model.Orderr;
 
@@ -25,7 +28,22 @@ public class OrderrDAO implements DAO<Orderr> {
 	
 	@Override
 	public void create(Orderr object) {
-		// TODO Auto-generated method stub
+		if (object == null)
+			throw new IllegalArgumentException("object missing");
+
+
+		
+		String sql = (null+", '"+object.getTotal()+"', '"+object.getShipto()+"', "+null+",'"+0+"', "
+						  		+ "'"+object.getPaymentid()+"', '"+object.getStatus()+"', '"+object.getCustomerid()+"'");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("INSERT INTO orderr(id,total,shipto,ordered,"
+															+ "shipped,paymentid,status,customerid) VALUES("+ sql +");");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Order already in use");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

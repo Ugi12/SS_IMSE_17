@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author Ugur Yürük
@@ -15,13 +14,11 @@ public class Customer implements Serializable{
 	private String email;
 	private String password;
 	private String password2;
-	private Date birthday;
 	private String firstname;
 	private String lastname;
 	private String address;
 	private String city;
 	private String country;
-	private Boolean open;
 	private Boolean isClosed;
 	
 	
@@ -39,18 +36,7 @@ public class Customer implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	/**
-	 * @return the open
-	 */
-	public Boolean getOpen() {
-		return open;
-	}
-	/**
-	 * @param open the open to set
-	 */
-	public void setOpen(Boolean open) {
-		this.open = open;
-	}
+
 	/**
 	 * @return the isClosed
 	 */
@@ -100,18 +86,7 @@ public class Customer implements Serializable{
 	public void setPassword2(String password2) {
 		this.password2 = password2;
 	}
-	/**
-	 * @return the birthday
-	 */
-	public Date getBirthday() {
-		return birthday;
-	}
-	/**
-	 * @param birthday the birthday to set
-	 */
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
+
 	/**
 	 * @return the firstname
 	 */
