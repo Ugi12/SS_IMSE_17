@@ -29,7 +29,7 @@ public class CustomerController extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setAttribute("customer", db.getCustomerDAO().findById(1));
-		request.getRequestDispatcher("/WEB-INF/helloworld.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
 	}
 
 
