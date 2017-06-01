@@ -80,14 +80,12 @@ public class OrderrDAO implements DAO<Orderr> {
 
 	@Override
 	public void update(Orderr object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 
 	@Override
 	public void delete(Orderr object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 	
 	private Orderr parse(ResultSet result) throws SQLException {

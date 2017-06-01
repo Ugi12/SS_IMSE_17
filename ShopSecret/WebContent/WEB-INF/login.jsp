@@ -9,7 +9,7 @@ Layout für Login-Seite
 
 </head>
 <body>
-<jsp:include page="WEB-INF/header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 
 <!--banner-->
 <div class="banner-top">
@@ -21,13 +21,13 @@ Layout für Login-Seite
 <div class="container">
 		<div class="Login">
 		
-			<form>
+			<form method="post" action="<%=request.getContextPath()%>/login">
 			<div class="col-md-6 login-do">
 				<div class="login-mail">
-					<input type="text" placeholder="Email" required="" name="LoginEmail">
+					<input type="text" placeholder="Email" required="" name="loginEmail">
 				</div>
 				<div class="login-mail">
-					<input type="password" placeholder="Passwort" required="" name="LoginPasswort">
+					<input type="password" placeholder="Passwort" required="" name="loginPasswort">
 				</div>
 				<label class="hvr-skew-backward">
 					<input type="submit" value="Einloggen">

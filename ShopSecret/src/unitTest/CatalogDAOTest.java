@@ -29,4 +29,10 @@ public class CatalogDAOTest extends TestCase{
 			}
 		}
 	}
+	
+	@Test
+	public void testUpdate(){
+		
+		
+	}
 }

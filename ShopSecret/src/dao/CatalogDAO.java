@@ -50,7 +50,7 @@ public class CatalogDAO implements DAO<Catalog> {
 	@Override
 	public Catalog findById(int id) {
 		
-		return null;
+		throw new RuntimeException("not implemented yet");
 	}
 
 	@Override
@@ -77,8 +77,7 @@ public class CatalogDAO implements DAO<Catalog> {
 
 	@Override
 	public void delete(Catalog object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 	
 	private Catalog parse(ResultSet result) throws SQLException {

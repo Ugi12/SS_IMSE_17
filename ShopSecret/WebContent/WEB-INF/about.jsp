@@ -8,7 +8,7 @@ Layout für ÜberUns-Seite
 
 </head>
 <body>
-<jsp:include page="WEB-INF/header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <!--banner-->
 <div class="banner-top">
 	<div class="container">

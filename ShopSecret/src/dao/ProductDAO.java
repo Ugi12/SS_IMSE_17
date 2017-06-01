@@ -79,14 +79,12 @@ public class ProductDAO implements DAO<Product> {
 
 	@Override
 	public void update(Product object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 
 	@Override
 	public void delete(Product object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 	
 	private Product parse(ResultSet result) throws SQLException {

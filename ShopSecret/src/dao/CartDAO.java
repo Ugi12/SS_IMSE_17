@@ -74,14 +74,12 @@ public class CartDAO implements DAO<Cart> {
 
 	@Override
 	public void update(Cart object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 
 	@Override
 	public void delete(Cart object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 	
 	private Cart parse(ResultSet result) throws SQLException {

@@ -22,7 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 		<div class="head">
 			<div class=" logo">
-				<a href="login.jsp"><img src="Images/logo1.png" alt=""></a>	
+				<a href="WEB-INF/login.jsp"><img src="Images/logo1.png" alt=""></a>	
 			</div>
 		</div>
 	</div>
@@ -30,9 +30,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 		<div class="col-sm-5 col-md-offset-2  header-login">
 					<ul >
-						<li><a href="login.jsp">Login</a></li>
-						<li><a href="registrierung.jsp">Registrieren</a></li>
-						<li><a href="logout.jsp">Logout</a></li>
+						<li><a href="<%=request.getContextPath()%>/login">Login</a></li>
+						<li><a href="WEB-INF/registrierung.jsp">Registrieren</a></li>
+						<li><a href="WEB-INF/logout.jsp">Logout</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>

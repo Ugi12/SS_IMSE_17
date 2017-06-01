@@ -78,14 +78,12 @@ public class PaymentDAO implements DAO<Payment> {
 
 	@Override
 	public void update(Payment object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 
 	@Override
 	public void delete(Payment object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 	
 	private Payment parse(ResultSet result) throws SQLException {

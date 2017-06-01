@@ -25,14 +25,13 @@ public class AdminDAO implements DAO<Admin> {
 	
 	@Override
 	public void create(Admin object) {
-
+		throw new RuntimeException("not implemented yet");
 		
 	}
 
 	@Override
 	public Admin findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("not implemented yet");
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class AdminDAO implements DAO<Admin> {
 
 	@Override
 	public void delete(Admin object) {
-		// TODO Auto-generated method stub
+		throw new RuntimeException("not implemented yet");
 		
 	}
 	

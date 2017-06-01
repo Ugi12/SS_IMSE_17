@@ -42,7 +42,7 @@ public class CustomerDAOTest extends TestCase{
 		customer.setCity("wien");
 		customer.setCountry("Oesterreich");
 		
-		db.getCustomerDAO().create(customer);
+		//db.getCustomerDAO().create(customer);
 		
 		List<Customer> customers = db.getCustomerDAO().findAll();
 		for(Customer c: customers){
@@ -50,5 +50,20 @@ public class CustomerDAOTest extends TestCase{
 				assertEquals("ugur", c.getFirstname());
 			}
 		}
+	}
+	
+	@Test
+	public void testUpdate(){
+		
+		List<Customer> customers = db.getCustomerDAO().findAll();
+		for(Customer c: customers){
+			if(c.getId()==6){
+				c.setFirstname("ugisChangedName");
+				
+				db.getCustomerDAO().update(c);
+				
+			}
+		}
+		
 	}
 }

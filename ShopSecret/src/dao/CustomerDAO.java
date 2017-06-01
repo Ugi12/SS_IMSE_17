@@ -91,14 +91,45 @@ public class CustomerDAO implements DAO<Customer>{
 	}
 
 	@Override
-	public void update(Customer object) {
-		// TODO Auto-generated method stub
+	public void update(Customer c) {
+		if (c == null)
+			throw new IllegalArgumentException("object missing");
+		if (c.getEmail() == null || c.getEmail().trim().length() < 3)
+			throw new IllegalArgumentException("email too short");
+		if (c.getPassword() == null || c.getPassword().trim().length() < 3)
+			throw new IllegalArgumentException("password too short");
+		if (c.getFirstname() == null || c.getFirstname().trim().length() < 3)
+			throw new IllegalArgumentException("firstname too short");
+		if (c.getLastname() == null || c.getLastname().trim().length() < 3)
+			throw new IllegalArgumentException("lastname too short");
+		if (c.getAddress() == null || c.getAddress().trim().length() < 3)
+			throw new IllegalArgumentException("address too short");
+		if (c.getCity() == null || c.getCity().trim().length() < 3)
+			throw new IllegalArgumentException("city too short");
+		if (c.getCountry() == null || c.getCountry().trim().length() < 3)
+			throw new IllegalArgumentException("country too short");
+
+
+		
+		//TODO sql statement fehlerhaft
+		String sql = (null+",'"+c.getEmail()+"','"+c.getPassword()+"','"+c.getFirstname()+"','"+c.getLastname()+"','"+c.getAddress()+"', '"+c.getCity()+"','"+c.getCountry()+"',0");
+		
+		try {
+			//db.getConnection().createStatement().executeUpdate("UPDATE customer VALUES("+ sql +") WHERE id=6;");
+			db.getConnection().createStatement().executeUpdate("update customer(id,email,password,firstname,"
+															+ "lastname,address,city,country,isclosed) values(null,'changed@live.at','12345678','gio','deStudent','wassergasse','linz','Österreich','0') WHERE id='6'");
+			
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("customer not found");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void delete(Customer object) {
-		// TODO Auto-generated method stub
+		throw new RuntimeException("not implemented yet");
 		
 	}
 

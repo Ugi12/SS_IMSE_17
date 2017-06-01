@@ -80,14 +80,12 @@ public class SupplierDAO implements DAO<Supplier> {
 
 	@Override
 	public void update(Supplier object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 
 	@Override
 	public void delete(Supplier object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 
 	private Supplier parse(ResultSet result) throws SQLException {

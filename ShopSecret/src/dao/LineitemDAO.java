@@ -82,14 +82,12 @@ public class LineitemDAO implements DAO<Lineitem> {
 
 	@Override
 	public void update(Lineitem object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 
 	@Override
 	public void delete(Lineitem object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");		
 	}
 	
 	private Lineitem parse(ResultSet result) throws SQLException {
