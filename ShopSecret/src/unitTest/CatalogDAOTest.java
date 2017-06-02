@@ -19,7 +19,7 @@ public class CatalogDAOTest extends TestCase{
 		Catalog catalog = new Catalog();
 		catalog.setName("Hosen");
 		catalog.setArticlequantity(11);
-		db.getCatalogDAO().create(catalog);
+		//db.getCatalogDAO().create(catalog);
 		
 		List<Catalog> catalogs = db.getCatalogDAO().findAll();
 		
@@ -31,8 +31,19 @@ public class CatalogDAOTest extends TestCase{
 	}
 	
 	@Test
-	public void testUpdate(){
+	public void testDelete(){
+		Catalog catalog = new Catalog();
+		catalog.setName("Tshirt");
+		db.getCatalogDAO().create(catalog);
+		db.getCatalogDAO().delete(catalog);
 		
+		 List<Catalog> catalogs = db.getCatalogDAO().findAll();
+		 
+		 for(Catalog c : catalogs){
+			 if(c.getName().equals("Tshirt")){
+				 assertEquals(false, c.getName());
+			 }
+		 }
 		
 	}
 }

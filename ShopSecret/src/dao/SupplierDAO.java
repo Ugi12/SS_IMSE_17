@@ -84,8 +84,17 @@ public class SupplierDAO implements DAO<Supplier> {
 	}
 
 	@Override
-	public void delete(Supplier object) {
-		throw new RuntimeException("not implemented yet");		
+	public void delete(Supplier s) {
+		if (s == null)
+			throw new IllegalArgumentException("object missing");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("DELETE FROM supplier WHERE id="+ s.getId() +";");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Lineitem not exist");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 
 	private Supplier parse(ResultSet result) throws SQLException {

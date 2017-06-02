@@ -86,8 +86,17 @@ public class LineitemDAO implements DAO<Lineitem> {
 	}
 
 	@Override
-	public void delete(Lineitem object) {
-		throw new RuntimeException("not implemented yet");		
+	public void delete(Lineitem l) {
+		if (l == null)
+			throw new IllegalArgumentException("object missing");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("DELETE FROM lineitem WHERE id="+ l.getId() +";");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Lineitem not exist");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	private Lineitem parse(ResultSet result) throws SQLException {

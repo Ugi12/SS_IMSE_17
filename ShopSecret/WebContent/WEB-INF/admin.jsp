@@ -19,8 +19,14 @@
 	      		<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
 	      		  <input type="text" name="name" class="form-control" placeholder="Produktname" aria-describedby="basic-addon1">	
 	      		   <input type="text" name="price" class="form-control" placeholder="Preis" aria-describedby="basic-addon1">	
-			  	  <input type="hidden" name="event" value="createProduct" />
-			  	<button type="submit" value="create" class="btn btn-default">Erstellen</button>
+				    <div class="radio">
+				      <label><input type="radio" name="optradio" value="woman">Damenkollektion</label>
+				    </div>
+				    <div class="radio">
+				      <label><input type="radio" name="optradio" value="man">Herrenkollektion</label>
+				    </div>
+				    <input type="hidden" name="event" value="createProduct" />
+					<button type="submit" value="create" class="btn btn-default">Erstellen</button>
 			  </form>
 			</div>
 		    </form>

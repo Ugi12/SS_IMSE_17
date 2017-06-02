@@ -19,7 +19,7 @@ public class SupplierDAOTest extends TestCase{
 	public void testCreate(){
 		Supplier supplier = new Supplier();
 		supplier.setName("UPS");
-		db.getSuplierDAO().create(supplier);
+		//db.getSuplierDAO().create(supplier);
 		
 		List<Supplier> suppliers = db.getSuplierDAO().findAll();
 		for(Supplier s : suppliers){
@@ -27,5 +27,13 @@ public class SupplierDAOTest extends TestCase{
 				assertEquals("UPS", s.getName());
 			}
 		}
+	}
+	
+	@Test
+	public void testDelete(){
+		Supplier supplier = new Supplier();
+		supplier = db.getSuplierDAO().findById(2);
+		db.getSuplierDAO().delete(supplier);
+		
 	}
 }

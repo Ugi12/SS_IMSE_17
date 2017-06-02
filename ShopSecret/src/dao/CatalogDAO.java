@@ -71,13 +71,21 @@ public class CatalogDAO implements DAO<Catalog> {
 
 	@Override
 	public void update(Catalog object) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("not implemented yet");			
 	}
 
 	@Override
-	public void delete(Catalog object) {
-		throw new RuntimeException("not implemented yet");		
+	public void delete(Catalog c) {
+		if (c == null)
+			throw new IllegalArgumentException("object missing");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("DELETE FROM catalog WHERE name='"+ c.getName() +"';");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Catalog not exist");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private Catalog parse(ResultSet result) throws SQLException {

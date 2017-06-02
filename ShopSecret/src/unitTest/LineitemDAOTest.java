@@ -33,4 +33,25 @@ public class LineitemDAOTest extends TestCase{
 			}
 		}
 	}
+	
+	@Test
+	public void testDelete(){
+		Lineitem l = new Lineitem();
+		l.setName("calvin klein");
+		l.setPrice(39);
+		l.setQuantity(1);
+		l.setCartid(1);
+		//db.getLineitemDAO().create(l);
+		
+		List<Lineitem> items = db.getLineitemDAO().findAll();
+		for(Lineitem item: items){
+			if(item.getName().equals("calvin klein")){
+				db.getLineitemDAO().delete(l);
+				
+			}
+		}
+
+		
+		
+	}
 }

@@ -20,6 +20,7 @@ public class ProductDAOTest extends TestCase{
 		Product product = new Product();
 		product.setName("Nike Regenjacke");
 		product.setPrice(99);
+		product.setSex("man");
 		product.setSupplierid(1);
 		//db.getProductDAO().create(product);
 		
@@ -30,6 +31,16 @@ public class ProductDAOTest extends TestCase{
 				assertEquals(1, p.getSupplierid());
 			}
 		}
+	}
+	
+	@Test
+	public void testDelete(){
+		Product product = new Product();
+		product.setId(10);
+		db.getProductDAO().delete(product);
+		
+		Product p = db.getProductDAO().findById(10);
+		assertNull(p);
 	}
 
 }

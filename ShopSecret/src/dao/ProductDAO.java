@@ -34,10 +34,10 @@ public class ProductDAO implements DAO<Product> {
 			throw new IllegalArgumentException("email too short");
 
 		
-		String sql = (null+", '"+p.getName()+"', '"+p.getPrice()+"', '"+p.getSupplierid()+"'");
+		String sql = (null+", '"+p.getName()+"', '"+p.getPrice()+"', '"+p.getSex()+"', '"+p.getSupplierid()+"'");
 		
 		try {
-			db.getConnection().createStatement().executeUpdate("INSERT INTO product(id,name,price,supplierid) VALUES("+ sql +");");
+			db.getConnection().createStatement().executeUpdate("INSERT INTO product(id,name,price,sex,supplierid) VALUES("+ sql +");");
 		} catch (MySQLIntegrityConstraintViolationException e) {
 			throw new IllegalArgumentException("Product already in use");
 		} catch (SQLException e) {
@@ -83,8 +83,19 @@ public class ProductDAO implements DAO<Product> {
 	}
 
 	@Override
-	public void delete(Product object) {
-		throw new RuntimeException("not implemented yet");		
+	public void delete(Product p) {
+		if (p == null)
+			throw new IllegalArgumentException("object missing");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("DELETE FROM product WHERE id="+ p.getId() +";");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Product not exist");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	private Product parse(ResultSet result) throws SQLException {
@@ -93,6 +104,7 @@ public class ProductDAO implements DAO<Product> {
 		product.setName(result.getString("name"));
 		product.setPrice(result.getFloat("price"));
 		product.setSupplierid(result.getInt("supplierid"));
+		product.setSex(result.getString("sex"));
 
 		return product;
 	}

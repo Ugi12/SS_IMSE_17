@@ -13,6 +13,7 @@ public class Product implements Serializable {
 	private int id;
 	private String name;
 	private float price;
+	private String sex;
 	private int supplierid;
 	
 	
@@ -63,6 +64,18 @@ public class Product implements Serializable {
 	 */
 	public void setSupplierid(int supplierid) {
 		this.supplierid = supplierid;
+	}
+	/**
+	 * @return the sex
+	 */
+	public String getSex() {
+		return sex;
+	}
+	/**
+	 * @param sex the sex to set
+	 */
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	
 	
