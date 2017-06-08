@@ -1,6 +1,6 @@
 ### Eclipse ###
 
-.classpath/
+.classpath
 .metadata
 bin/
 tmp/
@@ -12,7 +12,9 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-
+../.DS_Store
+./DS_Store
+DS_Store/
 # External tool builders
 .externalToolBuilders/
 

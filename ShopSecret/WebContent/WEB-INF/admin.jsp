@@ -50,7 +50,7 @@
 			<div class="input-group">
 			<h4>Erstelle neuer Katalog</h4>
 	      		<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-	      		  <input type="text" name="name" class="form-control" placeholder="Katalogname" aria-describedby="basic-addon1">	
+	      		  <input type="text" name="name" class="form-control" placeholder="Katalogname" pattern=".{4,}" aria-describedby="basic-addon1">	
 			  	  <input type="hidden" name="event" value="createCatalog" />
 			  	<button type="submit" value="create" class="btn btn-default">Erstellen</button>
 			  </form>

@@ -27,7 +27,7 @@ Layout für Login-Seite
 					<input type="text" placeholder="Email" required="" name="loginEmail">
 				</div>
 				<div class="login-mail">
-					<input type="password" placeholder="Passwort" required="" name="loginPasswort">
+					<input type="password" placeholder="Passwort" pattern=".{4,}" title="Six or more characters" name="loginPasswort">
 				</div>
 				<label class="hvr-skew-backward">
 					<input type="submit" value="Einloggen">

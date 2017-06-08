@@ -44,10 +44,15 @@ public class DBManager {
 
 	private void openConnection() {
 		try {
+			System.out.println("wait for connection");
 			Class.forName("com.mysql.jdbc.Driver");
-			String user = "sql11176925";
-			String password = "TNMqjWPsZp";
-			connection = DriverManager.getConnection("jdbc:mysql://sql11.freesqldatabase.com:3306/sql11176925", user, password);
+			String dbName = "IMSE";
+			String user = "root";
+			String password = "";
+			//TODO ERROR !!!
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName, user, password);
+			
+//			connection = DriverManager.getConnection("jdbc:mysql://sql11.freesqldatabase.com:3306/sql11176925", user, password);
 			System.out.println("DB SUCCESS");
 		} catch (Exception e) {
 			System.out.println("DATABASE ERROR: " + e.getMessage());
