@@ -15,7 +15,7 @@ public class DBManager {
 
 	private static DBManager instance = new DBManager();
 
-	private Connection connection;
+	private static Connection connection;
 
 	private AdminDAO adminDAO;
 	private CartDAO cartDAO;
@@ -41,10 +41,10 @@ public class DBManager {
 
 	}
 
-	private void openConnection() {
+	private static void openConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String host = "jdbc:mysql://localhost:3307/IMSE";
+			String host = "jdbc:mysql://localhost:3306/IMSE";
 			String user = "root";
 			String password = "";
 			connection = DriverManager.getConnection(host, user, password);

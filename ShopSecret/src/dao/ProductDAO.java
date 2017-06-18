@@ -37,7 +37,7 @@ public class ProductDAO implements DAO<Product> {
 		String sql = (null+", '"+p.getName()+"', '"+p.getPrice()+"', '"+p.getSex()+"', '"+p.getSupplierid()+"'");
 		
 		try {
-			db.getConnection().createStatement().executeUpdate("INSERT INTO product(id,name,price,sex,supplierid) VALUES("+ sql +");");
+			db.getConnection().createStatement().executeUpdate("INSERT INTO product VALUES("+ sql +");");
 		} catch (MySQLIntegrityConstraintViolationException e) {
 			throw new IllegalArgumentException("Product already in use");
 		} catch (SQLException e) {
@@ -78,8 +78,21 @@ public class ProductDAO implements DAO<Product> {
 	}
 
 	@Override
-	public void update(Product object) {
-		throw new RuntimeException("not implemented yet");		
+	public void update(Product p) {
+		
+		if (p == null)
+			throw new IllegalArgumentException("object missing");
+		
+		String sql = ("name='"+p.getName()+"', price='"+p.getPrice()+"', sex='"+p.getSex()+"', supplierid='"+p.getSupplierid()+"'");
+		
+		try {
+			db.getConnection().createStatement().executeUpdate("UPDATE product SET "+sql+" WHERE id="+p.getId());
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Product konnte nicht verändert werden");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
