@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 /**
  * <h1> Database Manager</h1>
  * CRUD-Funktions for Admin
@@ -44,15 +43,12 @@ public class DBManager {
 
 	private void openConnection() {
 		try {
-			System.out.println("wait for connection");
 			Class.forName("com.mysql.jdbc.Driver");
-			String dbName = "IMSE";
+			String host = "jdbc:mysql://localhost:3307/IMSE";
 			String user = "root";
 			String password = "";
-			//TODO ERROR !!!
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName, user, password);
+			connection = DriverManager.getConnection(host, user, password);
 			
-//			connection = DriverManager.getConnection("jdbc:mysql://sql11.freesqldatabase.com:3306/sql11176925", user, password);
 			System.out.println("DB SUCCESS");
 		} catch (Exception e) {
 			System.out.println("DATABASE ERROR: " + e.getMessage());
