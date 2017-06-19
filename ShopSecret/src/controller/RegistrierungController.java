@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.CustomerDAO;
 
-@WebServlet("/RegistrierungController")
+@WebServlet("/register")
 public class RegistrierungController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +19,13 @@ public class RegistrierungController extends HttpServlet {
 	public RegistrierungController() {
         super();
     }
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		request.getRequestDispatcher("/WEB-INF/registrierung.jsp").forward(request, response);
+		
+	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -39,7 +44,7 @@ public class RegistrierungController extends HttpServlet {
 		
 		
 		if(!password.equals(password2)){
-			throw new ServletException("Passwörter sind nicht gleich!");
+			throw new ServletException("Passwï¿½rter sind nicht gleich!");
 		}
 		
 		for (int i = 0; i<customerdao.findAll().size();i++) {

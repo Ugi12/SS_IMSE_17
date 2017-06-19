@@ -9,28 +9,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Produkt ändern</title>
 </head>
 <body>
-<!--  
-			<div class="panel panel-default" style="width: 20%; float: left; margin: 10px;">
-			  <div class="panel-body">
-			    <% //out.print("Name: " + product.getName()); %></br>
-			    <% //out.print("Preis: " + product.getPrice()); %></br>
-			    <%// out.print("Kollektion: " + product.getSex()); %></br>
-			  
-			  </div>
-			  <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-			    <input type="hidden" name="productId" value="<%=product.getId()%>" />
-			  	<input type="hidden" name="event" value="delete" />
-			  	<button type="submit" value="delete" class="btn btn-default">Löschen</button>
-			  </form>
-			  <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-			    <input type="hidden" name="productId_2" value="<%=product.getId()%>" />
-			  	<input type="hidden" name="event" value="edit" />
-			  	<button type="submit" value="edit" class="btn btn-default">Bearbeiten</button>
-			  </form>
-			</div>
--->
+ 		<%if(product != null){ %>
+			<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/editcontroller">
+		    		<input type="text" name="name" 	value="<%=product.getName()%>" 	class="form-control" placeholder="Produktname" aria-describedby="basic-addon1">	
+		    		<input type="text" name="price" value="<%=product.getPrice()%>" class="form-control" placeholder="Preis" aria-describedby="basic-addon1">	
+					<input type="text" name="sex" 	value="<%=product.getSex()%>" 	class="form-control" placeholder="Kollektion" aria-describedby="basic-addon1">
+			   		<input type="hidden" name="id" value="<%=product.getId()%>" />
+			   		<input type="hidden" name="supplierid" value="<%=product.getSupplierid()%>" />
+			   		<input type="hidden" name="event" value="updateProduct" />
+				<button type="submit" value="create" class="btn btn-default">Produkt ändern</button>
+			</form>
+		<%} %>
 </body>
 </html>

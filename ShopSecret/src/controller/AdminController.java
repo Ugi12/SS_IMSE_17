@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,8 +31,10 @@ public class AdminController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Product> products = db.getProductDAO().findAll();
+		List<Catalog> catalogs = db.getCatalogDAO().findAll();
 		
 		request.setAttribute("products", products);
+		request.setAttribute("catalogs", catalogs);
 		request.getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
 		
 	}
@@ -40,7 +43,8 @@ public class AdminController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		Boolean edited = false;
+		
 		/*
 		 * if new product button pushed then create a new product
 		 */
@@ -59,7 +63,7 @@ public class AdminController extends HttpServlet {
 			db.getProductDAO().create(p);
 		}
 		
-		/*
+		/**
 		 * create new catalog
 		 */
 		if(request.getParameter("event").equals("createCatalog")){
@@ -79,15 +83,27 @@ public class AdminController extends HttpServlet {
 			}
 		}
 		
-		Boolean edited = false;
+		
 		if(request.getParameter("event").equals("edit") && request.getParameter("event")!=null){
 			int productId = Integer.parseInt(request.getParameter("productId_2"));
 			Product product = db.getProductDAO().findById(productId);
 			request.setAttribute("product", product);
 			edited = true;
-			System.out.println("in fff");
-			response.sendRedirect(request.getContextPath() + "/editcontroller");
-			//TODO verbindung zur editcontroller um daten zu verändern muss gemacht werden.
+			RequestDispatcher rd = request.getRequestDispatcher("/editcontroller");
+			rd.forward(request, response);
+		}
+		
+		if(request.getParameter("event").equals("deleteCatalog")&& request.getParameter("event")!=null){
+			
+			
+			List<Catalog> catalogs = db.getCatalogDAO().findAll();
+			for(Catalog c : catalogs){
+				if(c.getName().equals(request.getParameter("catalogName"))){
+					db.getCatalogDAO().delete(c);
+				}
+			}
+		
+			
 		}
 		
 		if(!edited){

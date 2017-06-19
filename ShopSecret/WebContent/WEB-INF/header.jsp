@@ -22,7 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 		<div class="head">
 			<div class=" logo">
-				<a href="WEB-INF/login.jsp"><img src="Images/logo1.png" alt=""></a>	
+				<a href="<%=request.getContextPath()%>/home"><img src="Images/logo1.png" alt=""></a>	
 			</div>
 		</div>
 	</div>
@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-sm-5 col-md-offset-2  header-login">
 					<ul >
 						<li><a href="<%=request.getContextPath()%>/login">Login</a></li>
-						<li><a href="WEB-INF/registrierung.jsp">Registrieren</a></li>
+						<li><a href="<%=request.getContextPath()%>/register">Registrieren</a></li>
 						<li><a href="WEB-INF/logout.jsp">Logout</a></li>
 					</ul>
 				</div>
@@ -49,11 +49,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
         <ul class="nav navbar-nav nav_1">
-            <li><a class="color" href="home.jsp">Home</a></li>
+            <li><a class="color" href="<%=request.getContextPath()%>/home">Home</a></li>
             <li><a class="color" href="männer.jsp">Männer</a></li>
             <li><a class="color" href="frauen.jsp">Frauen</a></li>
             <li><a class="color" href="kontakt.jsp">Kontakt</a></li>
-            <li><a class="color" href="about.jsp">Über uns</a></li>
+            <li><a class="color" href="<%=request.getContextPath()%>/about">Über uns</a></li>
         </ul>
      </div>
 

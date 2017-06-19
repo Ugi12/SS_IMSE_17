@@ -7,6 +7,8 @@
 
 @SuppressWarnings("unchecked")
 List<Product> products = (List<Product>)request.getAttribute("products");
+@SuppressWarnings("unchecked")
+List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 
 %>
 <html>
@@ -38,7 +40,7 @@ List<Product> products = (List<Product>)request.getAttribute("products");
 			<div class="input-group">
 				<%if(products != null){ %>
 				<% for(Product p : products){ %>
-				<div class="panel panel-default" style="width: 25%; float: left; margin: 10px;">
+				<div class="panel panel-default" style="width: 30%; float: left; margin: 10px;">
 			 		 <div class="panel-body">
 			   		 <% out.print("Name: " + p.getName()); %></br>
 			  		 <% out.print("Preis: " + p.getPrice()); %></br>
@@ -70,22 +72,31 @@ List<Product> products = (List<Product>)request.getAttribute("products");
 			  	</form>
 			</div>
 		    
-		    <div class="input-group">
-				<h4>Katalog ändern</h4>
-	      		<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-	      			<input type="text" name="name" class="form-control" placeholder="Katalogname" aria-describedby="basic-addon1">	
-			  	  	<input type="hidden" name="event" value="updateCatalog" />
-			  		<button type="submit" value=update class="btn btn-default">Ändern</button>
-			  	</form>
-			</div>
 			<div class="input-group">
 				<h4>Katalog löschen</h4>
       			<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-	      		 	<input type="text" name="name" class="form-control" placeholder="Katalogname" aria-describedby="basic-addon1">	
+		  			
+		  				<div class="form-group" >
+						  <label for="sel1">Katalog</label>
+						  <br clear="all">
+						  <select name="catalogName" class="form-control" id="sel1">
+						  <option></option>
+						  	<% 
+							  		for(Catalog c: catalogs){
+							 %>		
+							  			<option <% if(catalogs != null){%> <% out.println("selected"); %>  <% }%>><% out.println(c.getName()); %></option>	
+							<%   
+									}
+							%>
+						  </select>
+						
+	      		 	
 			  	 	<input type="hidden" name="event" value="deleteCatalog" />
 			  		<button type="submit" value="delete" class="btn btn-default">Löschen</button>
+			  	</div>
 		 		</form>
 			</div>
+			
 		</div>
 	</body>
 </html>
