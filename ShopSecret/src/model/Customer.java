@@ -19,6 +19,7 @@ public class Customer implements Serializable{
 	private String address;
 	private String city;
 	private String country;
+	private String birthday;
 	private Boolean isClosed;
 	
 	
@@ -147,6 +148,17 @@ public class Customer implements Serializable{
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
+	/**
+	 * @return the country
+	 */
+	public String getBirthday() {
+		return birthday;
+	}
+	/**
+	 * @param birthday the birthday to set
+	 */
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 	
 }

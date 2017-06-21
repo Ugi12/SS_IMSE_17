@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DBManager;
 import model.Admin;
+import model.Customer;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -30,7 +31,7 @@ public class LoginController extends HttpServlet {
 		
 		DBManager db = DBManager.getInstance();
 		List<Admin> adminlist = db.getAdminDAO().findAll();
-		
+		List<Customer> customerlist = db.getCustomerDAO().findAll();
 		
 		
 		String loginEmail =request.getParameter("loginEmail");

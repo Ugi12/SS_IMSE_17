@@ -32,6 +32,8 @@ public class CustomerDAO implements DAO<Customer>{
 			throw new IllegalArgumentException("email too short");
 		if (c.getPassword() == null || c.getPassword().trim().length() < 3)
 			throw new IllegalArgumentException("password too short");
+		if (c.getPassword2() == null || c.getPassword2().trim().length() < 3)
+			throw new IllegalArgumentException("password2 too short");
 		if (c.getFirstname() == null || c.getFirstname().trim().length() < 3)
 			throw new IllegalArgumentException("firstname too short");
 		if (c.getLastname() == null || c.getLastname().trim().length() < 3)
@@ -42,11 +44,12 @@ public class CustomerDAO implements DAO<Customer>{
 			throw new IllegalArgumentException("city too short");
 		if (c.getCountry() == null || c.getCountry().trim().length() < 3)
 			throw new IllegalArgumentException("country too short");
-
+		if (c.getBirthday() == null || c.getBirthday().trim().length() < 3)
+			throw new IllegalArgumentException("birthday too short");
 
 		
 		String sql = (null+", '"+c.getEmail()+"', '"+c.getPassword()+"', '"+c.getFirstname() +"','"+c.getLastname()+"', "
-						  		+ "'"+c.getAddress()+"', '"+c.getCity()+"', '"+c.getCountry()+"','"+0+"'");
+						  		+ "'"+c.getAddress()+"', '"+c.getCity()+"', '"+c.getCountry()+"', '"+c.getBirthday() +"','"+0+"'");
 		
 		try {
 			db.getConnection().createStatement().executeUpdate("INSERT INTO customer(id,email,password,firstname,"
