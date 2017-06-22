@@ -22,19 +22,16 @@ Layout für Registrierung-Seite
 <div class="container">
 		<div class="Registrierung">
 		
-			<form>
+			<form method="post" action="<%=request.getContextPath()%>/register" accept-charset="iso-8859-1">
 			<div class="col-md-6 login-do">
 				<div class="login-mail">
-					<input type="text" placeholder="Vorname" required="" name="firstame">
+					<input type="text" placeholder="Vorname" required="" name="firstname">
 				</div>
 				<div class="login-mail">
 					<input type="text" placeholder="Nachname" required="" name="lastname">
 				</div>
 				<div class="login-mail">
 					<input type="text" placeholder="Email" required="" name="email">
-				</div>
-				<div class="login-mail">
-					<input type="text" placeholder="Geburtstag" required="" name="birthday">
 				</div>
 				<div class="login-mail">
 					<input type="text" placeholder="Adresse" required="" name="adress">

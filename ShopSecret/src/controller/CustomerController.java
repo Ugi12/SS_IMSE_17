@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.DefaultButtonModel;
 
 import dao.DBManager;
+import model.Customer;
 
 /**
  * Servlet implementation class CustomerController
  */
-@WebServlet("/customer/*")
+@WebServlet("/customer")
 public class CustomerController extends HttpServlet {
 	
 	
@@ -26,10 +27,13 @@ public class CustomerController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setAttribute("customer", db.getCustomerDAO().findById(1));
-		request.getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
+		System.out.println("in CustomerController");
+		Customer value = (Customer) request.getSession().getAttribute("credentials");
+		System.out.println("Session for : "+value.getEmail());
+		
+		//TODO hier weiter machen YUNUS 
+		
+		//request.getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
 	}
 
 

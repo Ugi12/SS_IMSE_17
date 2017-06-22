@@ -33,6 +33,11 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 				    <input type="hidden" name="event" value="createProduct" />
 					<button type="submit" value="create" class="btn btn-default">Erstellen</button>
 			 	 </form>
+			 	 <%if(request.getAttribute("error") != null){%>
+	    	<script type="text/javascript">
+	    		alert("Falsche Eingabe");
+	    	</script>
+	    <% } %>
 		    </div>
 		</div>
 		
@@ -95,8 +100,10 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 			  		<button type="submit" value="delete" class="btn btn-default">Löschen</button>
 			  	</div>
 		 		</form>
+		 		
 			</div>
 			
 		</div>
+		
 	</body>
 </html>

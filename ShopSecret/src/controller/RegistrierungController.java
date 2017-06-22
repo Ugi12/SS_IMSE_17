@@ -1,24 +1,25 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dao.CustomerDAO;
+import dao.DBManager;
+import model.Customer;
+
+
 
 @WebServlet("/register")
 public class RegistrierungController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	public RegistrierungController() {
-        super();
-    }
+	private DBManager db = DBManager.getInstance();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -29,34 +30,42 @@ public class RegistrierungController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		CustomerDAO customerdao = new CustomerDAO(null);
+		List<Customer> customers = db.getCustomerDAO().findAll();
 		
-		String firstname =request.getParameter("Vorname");
-		String lastname =request.getParameter("Nachname");
-		String email =request.getParameter("RegisterEmail");
-		String birthday =request.getParameter("Geburtstag");
-		String adress =request.getParameter("Adresse");
-		String city =request.getParameter("Stadt");
-		String country =request.getParameter("Land");
-		String password =request.getParameter("Passwort");
-		String password2 = request.getParameter("Passwort2");
-		HttpSession session = request.getSession();
+		String firstname =request.getParameter("firstname");
+		String lastname =request.getParameter("lastname");
+		String email =request.getParameter("email");
+		String address =request.getParameter("adress");
+		String city =request.getParameter("city");
+		String country =request.getParameter("country");
+		String password =request.getParameter("password");
+		String password2 = request.getParameter("password2");
 		
 		
+	 	
 		if(!password.equals(password2)){
-			throw new ServletException("Passw�rter sind nicht gleich!");
+			throw new ServletException("Passwörter sind nicht gleich!");
 		}
 		
-		for (int i = 0; i<customerdao.findAll().size();i++) {
-			if(customerdao.findAll().get(i).getLastname().equals(lastname)) {
-				throw new ServletException("Benutzer mit diesem Namen gibt es schon!");
-			}
-		}
-
-		for (int i = 0; i<customerdao.findAll().size();i++) {
-			if(customerdao.findAll().get(i).getEmail().equals(email)) {
+		for (Customer c : customers) {
+			if(c.getEmail().equals(email)) {
 				throw new ServletException("Benutzer mit dieser E-Mail gibt es schon!");
 			}
 		}
+		
+		Customer customer = new Customer();
+		customer.setFirstname(firstname);
+		customer.setLastname(lastname);
+		customer.setEmail(email);
+		customer.setAddress(address);
+		customer.setCity(city);
+		customer.setCountry(country);
+		customer.setPassword(password);
+		
+		db.getCustomerDAO().create(customer);
+		
+		response.sendRedirect(request.getContextPath() + "/login");
+
+
 	}
 }

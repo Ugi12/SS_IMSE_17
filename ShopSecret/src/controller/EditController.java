@@ -33,7 +33,7 @@ public class EditController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean isUpdated = false;
 		if(request.getParameter("event").equals("updateProduct") && request.getParameter("event")!=null){
-			System.out.println("editCont drin");
+			
 			Product p = new Product();
 			
 			p.setName(request.getParameter("name"));

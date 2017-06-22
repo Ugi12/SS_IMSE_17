@@ -16,7 +16,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="JS/jquery.min.js"></script>
 <script src="JS/jstarbox.js"></script>
 <link rel="stylesheet" href="CSS/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+<%@page import="model.*"%>
 </head>
+<%
+ Object credentials = request.getSession().getAttribute("credentials");
+
+%>
 <body>
 <div class="header">
 <div class="container">
@@ -32,7 +37,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul >
 						<li><a href="<%=request.getContextPath()%>/login">Login</a></li>
 						<li><a href="<%=request.getContextPath()%>/register">Registrieren</a></li>
+						
 						<li><a href="WEB-INF/logout.jsp">Logout</a></li>
+						
 					</ul>
 				</div>
 				<div class="clearfix"> </div>

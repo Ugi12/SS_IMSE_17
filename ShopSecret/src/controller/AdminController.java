@@ -45,65 +45,72 @@ public class AdminController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean edited = false;
 		
-		/*
-		 * if new product button pushed then create a new product
-		 */
-		if(request.getParameter("event").equals("createProduct") && request.getParameter("event")!=null){
-			Product p = new Product();
-			String name = request.getParameter("name");
-			String tmp = request.getParameter("price");
-			float price = Float.valueOf(tmp);
-			String sex = request.getParameter("optradio");
+		try{
 			
-			p.setName(name);
-			p.setPrice(price);
-			p.setSex(sex);
-			p.setSupplierid(1);
+		
+			/*
+			 * if new product button pushed then create a new product
+			 */
+			if(request.getParameter("event").equals("createProduct") && request.getParameter("event")!=null){
+				Product p = new Product();
+				String name = request.getParameter("name");
+				String tmp = request.getParameter("price");
+				float price = Float.valueOf(tmp);
+				String sex = request.getParameter("optradio");
+				
+				p.setName(name);
+				p.setPrice(price);
+				p.setSex(sex);
+				p.setSupplierid(1);
+				
+				db.getProductDAO().create(p);
+			}
 			
-			db.getProductDAO().create(p);
-		}
-		
-		/**
-		 * create new catalog
-		 */
-		if(request.getParameter("event").equals("createCatalog")){
-			Catalog c = new Catalog();
-			String name = request.getParameter("name");
-			c.setName(name);
-			db.getCatalogDAO().create(c);
-		}
-		
-		if(request.getParameter("event").equals("delete") && request.getParameter("event")!=null){
-			int productId = Integer.parseInt(request.getParameter("productId"));
-			List<Product> products = db.getProductDAO().findAll();
-			for(Product p : products){
-				if(p.getId() == productId){
-					db.getProductDAO().delete(p);
+			/**
+			 * create new catalog
+			 */
+			if(request.getParameter("event").equals("createCatalog")){
+				Catalog c = new Catalog();
+				String name = request.getParameter("name");
+				c.setName(name);
+				db.getCatalogDAO().create(c);
+			}
+			
+			if(request.getParameter("event").equals("delete") && request.getParameter("event")!=null){
+				int productId = Integer.parseInt(request.getParameter("productId"));
+				List<Product> products = db.getProductDAO().findAll();
+				for(Product p : products){
+					if(p.getId() == productId){
+						db.getProductDAO().delete(p);
+					}
 				}
 			}
-		}
-		
-		
-		if(request.getParameter("event").equals("edit") && request.getParameter("event")!=null){
-			int productId = Integer.parseInt(request.getParameter("productId_2"));
-			Product product = db.getProductDAO().findById(productId);
-			request.setAttribute("product", product);
-			edited = true;
-			RequestDispatcher rd = request.getRequestDispatcher("/editcontroller");
-			rd.forward(request, response);
-		}
-		
-		if(request.getParameter("event").equals("deleteCatalog")&& request.getParameter("event")!=null){
 			
 			
-			List<Catalog> catalogs = db.getCatalogDAO().findAll();
-			for(Catalog c : catalogs){
-				if(c.getName().equals(request.getParameter("catalogName"))){
-					db.getCatalogDAO().delete(c);
-				}
+			if(request.getParameter("event").equals("edit") && request.getParameter("event")!=null){
+				int productId = Integer.parseInt(request.getParameter("productId_2"));
+				Product product = db.getProductDAO().findById(productId);
+				request.setAttribute("product", product);
+				edited = true;
+				RequestDispatcher rd = request.getRequestDispatcher("/editcontroller");
+				rd.forward(request, response);
 			}
-		
 			
+			if(request.getParameter("event").equals("deleteCatalog")&& request.getParameter("event")!=null){
+				
+				
+				List<Catalog> catalogs = db.getCatalogDAO().findAll();
+				for(Catalog c : catalogs){
+					if(c.getName().equals(request.getParameter("catalogName"))){
+						db.getCatalogDAO().delete(c);
+					}
+				}
+			
+				
+			}
+		}catch(IllegalArgumentException e){
+			request.getSession().setAttribute("error", "ja");
+			//response.sendRedirect(request.getContextPath() + "/admin");
 		}
 		
 		if(!edited){
