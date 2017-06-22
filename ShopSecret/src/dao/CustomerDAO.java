@@ -43,7 +43,6 @@ public class CustomerDAO implements DAO<Customer>{
 		if (c.getCountry() == null || c.getCountry().trim().length() < 3)
 			throw new IllegalArgumentException("country too short");
 
-
 		
 		String sql = (null+", '"+c.getEmail()+"', '"+c.getPassword()+"', '"+c.getFirstname() +"','"+c.getLastname()+"', "
 						  		+ "'"+c.getAddress()+"', '"+c.getCity()+"', '"+c.getCountry()+"','"+0+"'");

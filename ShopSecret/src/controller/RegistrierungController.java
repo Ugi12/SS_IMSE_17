@@ -41,7 +41,6 @@ public class RegistrierungController extends HttpServlet {
 		String password =request.getParameter("password");
 		String password2 = request.getParameter("password2");
 		
-		
 	 	
 		if(!password.equals(password2)){
 			throw new ServletException("Passwörter sind nicht gleich!");

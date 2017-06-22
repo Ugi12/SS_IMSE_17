@@ -49,7 +49,7 @@ Layout für Registrierung-Seite
 					<input type="password" placeholder="Passwort wiederholen" required="" name="password2">
 				</div>
 				<label class="hvr-skew-backward">
-					<input type="submit" value="Registrieren">
+					<input type="submit" name="event" value="Registrieren">
 				</label>
 			</div>
 			<div class="clearfix"> </div>
