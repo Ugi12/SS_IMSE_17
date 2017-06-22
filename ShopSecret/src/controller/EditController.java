@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DBManager;
 import model.Product;
+import mongoDao.ProductDAO;
 
 /**
  * Servlet implementation class EditController
@@ -31,6 +32,7 @@ public class EditController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProductDAO productDao = new ProductDAO();
 		Boolean isUpdated = false;
 		if(request.getParameter("event").equals("updateProduct") && request.getParameter("event")!=null){
 			
@@ -41,7 +43,10 @@ public class EditController extends HttpServlet {
 			p.setSex(request.getParameter("sex"));
 			p.setId(Integer.parseInt(request.getParameter("id")));
 			p.setSupplierid(Integer.parseInt(request.getParameter("supplierid")));
-			db.getProductDAO().update(p);
+			//SQL
+			//db.getProductDAO().update(p);
+			//MONGO
+			productDao.update(p);
 			isUpdated = true;
 			RequestDispatcher rd = request.getRequestDispatcher("/admin");
 			rd.forward(request, response);

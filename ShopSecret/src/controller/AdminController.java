@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DBManager;
 import model.Catalog;
 import model.Product;
+import mongoDao.ProductDAO;
 
 /**
  * Servlet implementation class Admin
@@ -23,15 +24,19 @@ import model.Product;
 public class AdminController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	//SQL-DB
 	DBManager db = DBManager.getInstance();
+	//MONGO-DB
+	ProductDAO productDao = new ProductDAO();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<Product> products = db.getProductDAO().findAll();
+		//SQL-DB
+//		List<Product> products = db.getProductDAO().findAll();
 		List<Catalog> catalogs = db.getCatalogDAO().findAll();
+		//MONGO-DB
+		List<Product> products = productDao.findAll();
 		
 		request.setAttribute("products", products);
 		request.setAttribute("catalogs", catalogs);
@@ -52,6 +57,7 @@ public class AdminController extends HttpServlet {
 			 * if new product button pushed then create a new product
 			 */
 			if(request.getParameter("event").equals("createProduct") && request.getParameter("event")!=null){
+				
 				Product p = new Product();
 				String name = request.getParameter("name");
 				String tmp = request.getParameter("price");
@@ -63,7 +69,11 @@ public class AdminController extends HttpServlet {
 				p.setSex(sex);
 				p.setSupplierid(1);
 				
-				db.getProductDAO().create(p);
+				//SQL-DB
+				//db.getProductDAO().create(p);
+				
+				//MONGO-DB
+				productDao.create(p);
 			}
 			
 			/**
@@ -78,10 +88,18 @@ public class AdminController extends HttpServlet {
 			
 			if(request.getParameter("event").equals("delete") && request.getParameter("event")!=null){
 				int productId = Integer.parseInt(request.getParameter("productId"));
-				List<Product> products = db.getProductDAO().findAll();
+				//SQL
+				//List<Product> products = db.getProductDAO().findAll();
+				
+				//mongo
+				List<Product> products = productDao.findAll();
 				for(Product p : products){
 					if(p.getId() == productId){
-						db.getProductDAO().delete(p);
+						//SQL-DB
+						//db.getProductDAO().delete(p);
+						
+						//MONGO-DB
+						productDao.delete(p);
 					}
 				}
 			}
@@ -89,7 +107,10 @@ public class AdminController extends HttpServlet {
 			
 			if(request.getParameter("event").equals("edit") && request.getParameter("event")!=null){
 				int productId = Integer.parseInt(request.getParameter("productId_2"));
-				Product product = db.getProductDAO().findById(productId);
+				//SQL-DB
+				//Product product = db.getProductDAO().findById(productId);
+				//MONGO-DB
+				Product product = productDao.findById(productId);
 				request.setAttribute("product", product);
 				edited = true;
 				RequestDispatcher rd = request.getRequestDispatcher("/editcontroller");

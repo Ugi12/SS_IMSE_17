@@ -9,7 +9,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import dao.DAO;
-import model.Admin;
+import helper.NextId;
 import model.Product;
 
 
@@ -21,12 +21,13 @@ import model.Product;
  * @author Ugur Yürük
  */
 public class ProductDAO implements DAO<Product> {
-
 	
+	NextId nextid = new NextId();
+	MongoDatabase db = DBManager.getDatabase();
 
 	public void create(Product p) {
-		MongoDatabase db = DBManager.getDatabase();
-		db.getCollection("Product").insertOne(new Document().append("_id", p.getId())
+		
+		db.getCollection("Product").insertOne(new Document().append("_id", nextid.getNextId("Product"))
 															.append("name", p.getName())
 															.append("price", p.getPrice())
 															.append("sex", p.getSex())
@@ -36,7 +37,20 @@ public class ProductDAO implements DAO<Product> {
 
 	@Override
 	public Product findById(int id) {
-		throw new RuntimeException("not implemented yet");
+		Product product = new Product();
+		
+		MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Product");
+		
+		List<Document> products = collection.find().into(new ArrayList<Document>());
+		
+		for(Document document: products){
+			if(document.getInteger("_id") == id){
+				product = parse(document);
+				return product;
+			}
+			
+		}
+		return null;
 		
 	}
 
@@ -57,13 +71,35 @@ public class ProductDAO implements DAO<Product> {
 	@Override
 	public void update(Product p) {
 		
+		MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Product");
+		
+		List<Document> products = collection.find().into(new ArrayList<Document>());
+		for(Document document: products){
+			if(document.getInteger("_id") == p.getId()){
+				db.getCollection("Product").updateOne(document, new Document("$set", 
+																new Document().append("name", p.getName())
+																			  .append("price", p.getPrice())
+																			  .append("sex", p.getSex())
+																			  .append("supplierid", p.getSupplierid())));
+			}
+			
+		}
+		
+		
+
 		
 	}
 
 	@Override
 	public void delete(Product p) {
-		
-		
+		try{
+			Document query = new Document("_id", p.getId());
+					
+			db.getCollection("Product").deleteOne(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			
 	}
 	
 	private Product parse(Document result) {
