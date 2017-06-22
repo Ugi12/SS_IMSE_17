@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DBManager;
 import model.Admin;
 import model.Customer;
+import mongoDao.AdminDAO;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -42,11 +43,19 @@ public class LoginController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		
-		DBManager db = DBManager.getInstance();
-		List<Admin> adminlist = db.getAdminDAO().findAll();
-		List<Customer> customerlist = db.getCustomerDAO().findAll();
 		request.getSession().invalidate();
-		
+		DBManager db = DBManager.getInstance();
+		/**
+		 * SQL-DB
+		 */
+//		List<Admin> adminlist = db.getAdminDAO().findAll();
+//		List<Customer> customerlist = db.getCustomerDAO().findAll();
+		/**
+		 * Mongo-DB
+		 */
+		AdminDAO adminDao = new AdminDAO();
+		List<Admin> adminlist = adminDao.findAll();
+		List<Customer> customerlist = db.getCustomerDAO().findAll();
 		
 		String loginEmail =request.getParameter("loginEmail");
 		String loginPasswort =request.getParameter("loginPasswort");

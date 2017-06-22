@@ -8,7 +8,6 @@ import org.bson.Document;
 import com.mongodb.client.MongoCollection;
 
 import dao.DAO;
-import dao.DBManager;
 import model.Admin;
 
 
@@ -22,12 +21,6 @@ import model.Admin;
 public class AdminDAO implements DAO<Admin> {
 
 	
-	@SuppressWarnings("unused")
-	private DBManager db;
-
-	protected AdminDAO(DBManager db) {
-		this.db = db;
-	}
 	
 	@Override
 	public void create(Admin object) {
@@ -44,7 +37,7 @@ public class AdminDAO implements DAO<Admin> {
 	public List<Admin> findAll() {
 		List<Admin> output = new ArrayList<>();
 		
-		MongoCollection<Document> collection = MongoDBManager.getDatabase()
+		MongoCollection<Document> collection = DBManager.getDatabase()
 				.getCollection("Admin");
  
 		List<Document> admins = (List<Document>) collection.find().into(
