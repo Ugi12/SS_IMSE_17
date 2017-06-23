@@ -31,6 +31,10 @@ Layout für Kontakt-Seite
 				 <p>
 				 Ugur Yürük: a1401783@unet.univie.ac.at
 				 </p>
+				 <p>
+				 Yunus Emre Kanitoglu: a1063735@unet.univie.ac.at
+				 </p>
+				 
 			</div>
 </div>
 </body>

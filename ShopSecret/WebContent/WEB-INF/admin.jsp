@@ -26,7 +26,7 @@ List<Supplier> suppliers = (List<Supplier>)request.getAttribute("suppliers");
 	      		 	<input type="text" name="name" class="form-control" required="" placeholder="Produktname" aria-describedby="basic-addon1">
 	      		   	<input type="text" name="price" class="form-control" required="" placeholder="Preis" aria-describedby="basic-addon1">
 				    <div class="radio">
-				      <label><input type="radio" name="optradio" value="woman">Damenkollektion</label>
+				      <label><input type="radio" name="optradio" value="woman" checked>Damenkollektion</label>
 				    </div>
 				    <div class="radio">
 				      <label><input type="radio" name="optradio" value="man">Herrenkollektion</label>
@@ -96,11 +96,13 @@ List<Supplier> suppliers = (List<Supplier>)request.getAttribute("suppliers");
 				   		<input type="hidden" name="productId_2" value="<%=p.getId()%>" />
 				  		<input type="hidden" name="event" value="edit" />
 				  		<button type="submit" value="edit" class="btn btn-default">Bearbeiten</button>
+
 				  	</form>
             <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
 				   		<input type="hidden" name="productId_2" value="<%=p.getId()%>" />
 				  		<input type="hidden" name="event" value="warenkorp" />
 				  		<button type="submit" value="warenkorp" class="btn btn-default">Warenkorb</button>
+
 				  	</form>
 				</div>
 				<%} %>
@@ -143,6 +145,7 @@ List<Supplier> suppliers = (List<Supplier>)request.getAttribute("suppliers");
 		 		</form>
 
 			</div>
+
 
       <div id="cd-shadow-layer"></div>
 
