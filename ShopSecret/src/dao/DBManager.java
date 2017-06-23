@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 /**
  * <h1> Database Manager</h1>
- * CRUD-Funktions for Admin
- * included DB-query	
+ * 
+ * Connection for SQL-DB
  * 
  * @author Ugur Yürük
  */

@@ -16,7 +16,9 @@ import mongoDao.CatalogDAO;
 import mongoDao.ProductDAO;
 import mongoDao.SupplierDAO;
 
+
 /**
+ * @author Ugur Yürük
  * Servlet implementation class EditController
  */
 @WebServlet("/editcontroller")
@@ -40,6 +42,10 @@ public class EditController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDAO productDao = new ProductDAO();
 		Boolean isUpdated = false;
+		
+		/**
+		 * Update Product
+		 */
 		if(request.getParameter("event").equals("updateProduct") && request.getParameter("event")!=null){
 			
 			Product p = new Product();
@@ -50,7 +56,6 @@ public class EditController extends HttpServlet {
 			p.setId(Integer.parseInt(request.getParameter("id")));
 			p.setCatalogName(request.getParameter("catalog"));
 			
-			System.out.println(request.getParameter("catalog"));
 			
 			for(Supplier s : supplierDao.findAll()){
 				if(s.getName().equals(request.getParameter("supplierName"))){

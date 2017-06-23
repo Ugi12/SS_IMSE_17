@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
-
 import model.Customer;
 /**
  * <h1> CustomerDao</h1>
@@ -114,9 +113,7 @@ public class CustomerDAO implements DAO<Customer>{
 		String sql = (null+",'"+c.getEmail()+"','"+c.getPassword()+"','"+c.getFirstname()+"','"+c.getLastname()+"','"+c.getAddress()+"', '"+c.getCity()+"','"+c.getCountry()+"',0");
 		
 		try {
-			//db.getConnection().createStatement().executeUpdate("UPDATE customer VALUES("+ sql +") WHERE id=6;");
-			db.getConnection().createStatement().executeUpdate("update customer(id,email,password,firstname,"
-															+ "lastname,address,city,country,isclosed) values(null,'changed@live.at','12345678','gio','deStudent','wassergasse','linz','Österreich','0') WHERE id='6'");
+			db.getConnection().createStatement().executeUpdate("UPDATE customer VALUES("+ sql +") WHERE id="+c.getId());
 			
 		} catch (MySQLIntegrityConstraintViolationException e) {
 			throw new IllegalArgumentException("customer not found");

@@ -19,56 +19,54 @@
 <body>
  		<%if(product != null){ %>
 	<div class="panel panel-default" style="width: 100%; float: left; padding: 10px;">
-			<div class="input-group">
-				<h4>Produkt ändern</h4>
-	      		<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/editcontroller">
-	      		 	<input type="text" name="name" class="form-control" required="" value="<%=product.getName()%>" placeholder="Produktname" aria-describedby="basic-addon1">
-	      		   	<input type="text" name="price" class="form-control" required="" value="<%=product.getPrice()%>" placeholder="Preis" aria-describedby="basic-addon1">
+		<div class="input-group">
+			<h4>Produkt ändern</h4>
+	      	<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/editcontroller">
+   		 	<input type="text" name="name" class="form-control" required="" value="<%=product.getName()%>" placeholder="Produktname" aria-describedby="basic-addon1">
+   		   	<input type="text" name="price" class="form-control" required="" value="<%=product.getPrice()%>" placeholder="Preis" aria-describedby="basic-addon1">
 				  
-				    <div class="form-group" >
-						  <label for="sel1">Katalog</label>
-						  <br clear="all">
-						  <select name="catalog" class="form-control" id="sel1">
-						 
-						  	<%
-							  		for(Catalog c: catalogs){
-							 %>
-							  			<%if(c.getName().equals(product.getCatalogName())){ %>
-							  				<option selected='selected'><% out.println(c.getName()); %></option>
-							<%  		}else if(!c.getName().equals(product.getCatalogName())){
-									%>		<option><% out.println(c.getName()); %>
-					  						</option>
-									<%	}
-							
-									}
-							%>
-						  </select>
-			  	</div>
-			  	<div class="form-group" >
-						  <label for="sel1">Lieferant</label>
-						  <br clear="all">
-						  <select name="supplierName" class="form-control" id="sel1">
-						  
-						  	<%
-							  		for(Supplier s: suppliers){
-									 if(s.getId() == product.getSupplierid()){ %>
-									  				<option selected='selected'><% out.println(s.getName()); %></option>
-									<%}else if(s.getId() != product.getSupplierid()){
-									%>	<option><% out.println(s.getName()); %>
-							  			</option>
-									<%}
-									}
-							%>
-						  </select>
-			  	</div>
+		    <div class="form-group" >
+				  <label for="sel1">Katalog</label>
+				  <br clear="all">
+				  <select name="catalog" class="form-control" id="sel1">
+				  	<%
+					  		for(Catalog c: catalogs){
+					 			if(c.getName().equals(product.getCatalogName())){ %>
+					  				<option selected='selected'><% out.println(c.getName()); %></option>
+					<%  		}else if(!c.getName().equals(product.getCatalogName())){
+							%>		<option><% out.println(c.getName()); %>
+			  						</option>
+							<%	}
+					
+							}
+					%>
+				  </select>
+	  		</div>
+	  		
+		  	<div class="form-group" >
+				  <label for="sel1">Lieferant</label>
+				  <br clear="all">
+				  <select name="supplierName" class="form-control" id="sel1">
+				  	<%
+				  		for(Supplier s: suppliers){
+						 if(s.getId() == product.getSupplierid()){ %>
+						  				<option selected='selected'><% out.println(s.getName()); %></option>
+						<%}else if(s.getId() != product.getSupplierid()){
+						%>	<option><% out.println(s.getName()); %>
+				  			</option>
+						<%}
+						}
+					%>
+				  </select>
+		  	</div>
 			  	
-				  	<input type="hidden" name="id" value="<%=product.getId()%>" />
-				   	<input type="hidden" name="sex" value="<%=product.getSex()%>" />
-			   		<input type="hidden" name="event" value="updateProduct" />
-				<button type="submit" value="create" class="btn btn-default">Produkt ändern</button>
+		  	<input type="hidden" name="id" value="<%=product.getId()%>" />
+		   	<input type="hidden" name="sex" value="<%=product.getSex()%>" />
+	   		<input type="hidden" name="event" value="updateProduct" />
+			<button type="submit" value="create" class="btn btn-default">Produkt ändern</button>
 				
-			 	 </form>
-			 	 </div>
+	 	 </form>
+ 	 </div>
 
 	    <% } %>
 		    

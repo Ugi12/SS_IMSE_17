@@ -32,10 +32,8 @@ public class NextId {
 				if(nextid < document.getInteger("_id")){
 					nextid = document.getInteger("_id");
 				}
-				 
 			}
 		}
-		
 		
 		return ++nextid;
 	}

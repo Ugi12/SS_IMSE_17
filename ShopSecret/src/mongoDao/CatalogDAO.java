@@ -13,22 +13,36 @@ import helper.MongoDBHelper;
 import helper.NextId;
 import model.Catalog;
 
+/**
+ * <h1> CatalogDao</h1>
+ * CRUD-Funktions for Catalog
+ * 
+ * @author Ugur Yürük
+ */
 public class CatalogDAO implements DAO<Catalog>{
 
 	MongoDatabase db = DBManager.getDatabase();
 
+	/**
+	 * Create a new Catalog-Collection in MongoDB
+	 * 
+	 */
 	@Override
 	public void create(Catalog c) {
 		db.getCollection("Catalog").insertOne(new Document().append("_id", NextId.getNextId("Catalog"))
 															.append("name", c.getName()));
-		
 	}
 
+	
 	@Override
 	public Catalog findById(int id) {
 		throw new RuntimeException("not implemented yet");
 	}
-
+	
+	
+	/**
+	 * Returns a list of all Catalogs from MongoDB
+	 */
 	@Override
 	public List<Catalog> findAll() {
 		
@@ -44,12 +58,15 @@ public class CatalogDAO implements DAO<Catalog>{
 		return output;
 	}
 
+	
 	@Override
 	public void update(Catalog object) {
 		throw new RuntimeException("not implemented yet");
-		
 	}
 
+	/**
+	 * Delete specific Catalog from MongoDB
+	 */
 	@Override
 	public void delete(Catalog c) {
 		try{
@@ -59,7 +76,6 @@ public class CatalogDAO implements DAO<Catalog>{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
 	}
 	
 	

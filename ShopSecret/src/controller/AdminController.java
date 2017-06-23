@@ -155,6 +155,7 @@ public class AdminController extends HttpServlet {
 				}
 			}
 			
+			
 			/**
 			 * create Supplier
 			 */
@@ -163,6 +164,7 @@ public class AdminController extends HttpServlet {
 				supplier.setName(request.getParameter("name"));
 				supplierDao.create(supplier);
 			}
+			
 			
 			/**
 			 * delete Supplier
@@ -177,14 +179,10 @@ public class AdminController extends HttpServlet {
 					}
 				}
 				supplierDao.delete(supplier);
-				
 			}
-			
-			
 			
 		}catch(IllegalArgumentException e){
 			request.getSession().setAttribute("error", "ja");
-			//response.sendRedirect(request.getContextPath() + "/admin");
 		}
 		
 		if(!edited){
