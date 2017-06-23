@@ -14,6 +14,11 @@ import model.Admin;
 import model.Customer;
 import mongoDao.AdminDAO;
 
+/**
+ * this class is the endpoint for servicing requests from path login
+ * 
+ * @author yemrekanitoglu
+ */
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 
@@ -69,6 +74,7 @@ public class LoginController extends HttpServlet {
 				request.getSession().setAttribute("credentials", admin);
 				response.sendRedirect("admin");
 				found = true;
+				break;
 			}
 		}
 

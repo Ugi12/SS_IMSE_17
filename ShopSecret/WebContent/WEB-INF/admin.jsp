@@ -112,7 +112,7 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 
       <!-- example mocked cart -->
 			<div id="cd-cart">
-				<h2>Cart</h2>
+				<h2>Warenkorp</h2>
 				<ul class="cd-cart-items">
 						<li>
 							<input type='button' value='-' class='qtyminus' field='quantity' />
