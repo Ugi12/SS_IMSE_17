@@ -63,7 +63,7 @@ public class AdminController extends HttpServlet {
 				String tmp = request.getParameter("price");
 				float price = Float.valueOf(tmp);
 				String sex = request.getParameter("optradio");
-				
+				// TODO kollektion must be entered 
 				p.setName(name);
 				p.setPrice(price);
 				p.setSex(sex);

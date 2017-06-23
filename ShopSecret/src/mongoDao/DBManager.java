@@ -17,7 +17,7 @@ public class DBManager {
 		if (db == null) {
 			
 			db = new MongoClient("localhost", 27017).getDatabase("IMSE");
-			//addDefaultAdmin();
+			addDefaultAdmin();
 			return db;
 		}
 		

@@ -9,6 +9,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import dao.DAO;
+import helper.MongoDBHelper;
 import helper.NextId;
 import model.Product;
 
@@ -45,7 +46,7 @@ public class ProductDAO implements DAO<Product> {
 		
 		for(Document document: products){
 			if(document.getInteger("_id") == id){
-				product = parse(document);
+				product = MongoDBHelper.parse(document);
 				return product;
 			}
 			
@@ -63,7 +64,7 @@ public class ProductDAO implements DAO<Product> {
 		List<Document> products = collection.find().into(new ArrayList<Document>());
 		
 		for(Document document: products){
-			output.add(parse(document));
+			output.add(MongoDBHelper.parse(document));
 		}
 		return output;
 	}
@@ -101,18 +102,5 @@ public class ProductDAO implements DAO<Product> {
 		}
 			
 	}
-	
-	private Product parse(Document result) {
-		Product product = new Product();
-		product.setId(result.getInteger("_id"));
-		product.setName(result.getString("name"));
-		product.setPrice(result.getDouble("price").floatValue());
-		product.setSex(result.getString("sex"));
-		product.setSupplierid(result.getInteger("supplierid"));
-
-		return product;
-	}
-	
-
 
 }
