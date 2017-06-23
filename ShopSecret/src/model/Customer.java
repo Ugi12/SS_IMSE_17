@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 /**
- * @author Ugur Yürük
+ * @author Julian Thaler
  */
 public class Customer implements Serializable{
 	

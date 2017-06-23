@@ -17,7 +17,7 @@ import mongoDao.AdminDAO;
 /**
  * this class is the endpoint for servicing requests from path login
  * 
- * @author yemrekanitoglu
+ * @author Julian Thaler
  */
 @WebServlet("/login")
 public class LoginController extends HttpServlet {

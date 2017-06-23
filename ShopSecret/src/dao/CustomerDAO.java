@@ -14,7 +14,7 @@ import model.Customer;
  * CRUD-Funktions for Customer
  * included DB-query	
  * 
- * @author Ugur Yürük
+ * @author Julian Thaler
  */
 public class CustomerDAO implements DAO<Customer>{
 
