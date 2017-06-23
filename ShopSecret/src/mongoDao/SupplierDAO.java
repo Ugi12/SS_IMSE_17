@@ -11,7 +11,6 @@ import com.mongodb.client.MongoDatabase;
 import dao.DAO;
 import helper.MongoDBHelper;
 import helper.NextId;
-import model.Product;
 import model.Supplier;
 
 public class SupplierDAO implements DAO<Supplier> {
@@ -27,8 +26,7 @@ public class SupplierDAO implements DAO<Supplier> {
 
 	@Override
 	public Supplier findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("not implemented yet");
 	}
 
 	@Override
@@ -48,13 +46,19 @@ public class SupplierDAO implements DAO<Supplier> {
 
 	@Override
 	public void update(Supplier object) {
-		// TODO Auto-generated method stub
+		throw new RuntimeException("not implemented yet");
 		
 	}
 
 	@Override
-	public void delete(Supplier object) {
-		// TODO Auto-generated method stub
+	public void delete(Supplier s) {
+		try{
+			Document query = new Document("_id", s.getId());
+					
+			db.getCollection("Supplier").deleteOne(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 

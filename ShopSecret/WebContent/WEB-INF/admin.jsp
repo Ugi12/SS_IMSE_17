@@ -9,7 +9,8 @@
 List<Product> products = (List<Product>)request.getAttribute("products");
 @SuppressWarnings("unchecked")
 List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
-
+@SuppressWarnings("unchecked")
+List<Supplier> suppliers = (List<Supplier>)request.getAttribute("suppliers");
 %>
 <html>
 	<head>
@@ -22,14 +23,42 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 			<div class="input-group">
 				<h4>Erstelle neues Produkt</h4>
 	      		<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-	      		 	<input type="text" name="name" class="form-control" placeholder="Produktname" aria-describedby="basic-addon1">
-	      		   	<input type="text" name="price" class="form-control" placeholder="Preis" aria-describedby="basic-addon1">
+	      		 	<input type="text" name="name" class="form-control" required="" placeholder="Produktname" aria-describedby="basic-addon1">
+	      		   	<input type="text" name="price" class="form-control" required="" placeholder="Preis" aria-describedby="basic-addon1">
 				    <div class="radio">
 				      <label><input type="radio" name="optradio" value="woman">Damenkollektion</label>
 				    </div>
 				    <div class="radio">
 				      <label><input type="radio" name="optradio" value="man">Herrenkollektion</label>
 				    </div>
+				    <div class="form-group" >
+						  <label for="sel1">Katalog</label>
+						  <br clear="all">
+						  <select name="catalog" class="form-control" id="sel1">
+						  <option></option>
+						  	<%
+							  		for(Catalog c: catalogs){
+							 %>
+							  			<option <% if(catalogs != null){%> <% out.println("selected"); %>  <% }%>><% out.println(c.getName()); %></option>
+							<%
+									}
+							%>
+						  </select>
+			  	</div>
+			  	<div class="form-group" >
+						  <label for="sel1">Lieferant</label>
+						  <br clear="all">
+						  <select name="supplierName" class="form-control" id="sel1">
+						  <option></option>
+						  	<%
+							  		for(Supplier s: suppliers){
+							 %>
+							  			<option <% if(suppliers != null){%> <% out.println("selected"); %>  <% }%>><% out.println(s.getName()); %></option>
+							<%
+									}
+							%>
+						  </select>
+			  	</div>
 				    <input type="hidden" name="event" value="createProduct" />
 					<button type="submit" value="create" class="btn btn-default">Erstellen</button>
 			 	 </form>
@@ -50,6 +79,13 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 			   		 <% out.print("Name: " + p.getName()); %></br>
 			  		 <% out.print("Preis: " + p.getPrice()); %></br>
 			  		 <% out.print("Kollektion: " + p.getSex()); %></br>
+			  		 <% out.print("Katalog: " + p.getCatalogName()); %></br>
+			  		 <%for(Supplier s : suppliers){
+			  			 if(s.getId() == p.getSupplierid()){%>
+			  				<% out.print("Lieferant: " + s.getName()); %></br>
+			  		<% 	 } 
+			  		   }%>  
+			  		 
 			  		</div>
 				  	<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
 				    	<input type="hidden" name="productId" value="<%=p.getId()%>" />
@@ -64,7 +100,7 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
             <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
 				   		<input type="hidden" name="productId_2" value="<%=p.getId()%>" />
 				  		<input type="hidden" name="event" value="warenkorp" />
-				  		<button type="submit" value="warenkorp" class="btn btn-default">Warenkorp</button>
+				  		<button type="submit" value="warenkorp" class="btn btn-default">Warenkorb</button>
 				  	</form>
 				</div>
 				<%} %>
@@ -76,7 +112,7 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 			<div class="input-group">
 				<h4>Erstelle neuer Katalog</h4>
 	      		<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-		      		<input type="text" name="name" class="form-control" placeholder="Katalogname" pattern=".{4,}" aria-describedby="basic-addon1">
+		      		<input type="text" name="name" class="form-control" placeholder="Katalogname" required=""  pattern=".{4,}" aria-describedby="basic-addon1">
 				  	<input type="hidden" name="event" value="createCatalog" />
 				  	<button type="submit" value="create" class="btn btn-default">Erstellen</button>
 			  	</form>
@@ -112,7 +148,7 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 
       <!-- example mocked cart -->
 			<div id="cd-cart">
-				<h2>Warenkorp</h2>
+				<h2>Warenkorb</h2>
 				<ul class="cd-cart-items">
 						<li>
 							<input type='button' value='-' class='qtyminus' field='quantity' />
@@ -149,6 +185,49 @@ List<Catalog> catalogs = (List<Catalog>)request.getAttribute("catalogs");
 
 
 		</div>
+		
+		
+		
+		<div class="panel panel-default" style="width: 100%; float: left; padding: 10px;">
+			<div class="input-group">
+				<h4>Lieferant erstellen</h4>
+	      		<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
+		      		<input type="text" name="name" class="form-control" placeholder="Lieferanten Name" required="" pattern=".{4,}" aria-describedby="basic-addon1">
+				  	<input type="hidden" name="event" value="createSupplier" />
+				  	<button type="submit" value="create" class="btn btn-default">Erstellen</button>
+			  	</form>
+			</div>
+
+			<div class="input-group">
+				<h4>Lieferant löschen</h4>
+      			<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
+
+		  				<div class="form-group" >
+						  <label for="sel1">Lieferant</label>
+						  <br clear="all">
+						  <select name="supplierName" class="form-control" id="sel1">
+						  <option></option>
+						  	<%
+							  		for(Supplier s: suppliers){
+							 %>
+							  			<option <% if(suppliers != null){%> <% out.println("selected"); %>  <% }%>><% out.println(s.getName()); %></option>
+										
+							<%
+									}
+			
+							%>
+						  </select>
+
+
+			  	 	<input type="hidden" name="event" value="deleteSupplier" />
+			  	 	
+			  		<button type="submit" value="delete" class="btn btn-default">Löschen</button>
+			  	</div>
+		 		</form>
+
+			</div>
+			
+			</div>
 
 	</body>
 </html>

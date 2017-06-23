@@ -16,4 +16,11 @@ public class SupplierDAOMongoTest extends TestCase{
 		s.setName("Ugi da Expesser");
 		supplierDao.create(s);
 	}
+	
+	@Test
+	public void testDeleteSupplier(){
+		Supplier s = new Supplier();
+		s.setId(2);
+		//supplierDao.delete(s);
+	}
 }

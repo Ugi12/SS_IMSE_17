@@ -26,7 +26,7 @@ public class NextId {
 		List<Document> list = collection.find().into(new ArrayList<Document>());
 		
 		if(list.isEmpty()){
-			nextid = 1;
+			nextid = 0;
 		}else{
 			for(Document document: list){
 				if(nextid < document.getInteger("_id")){
