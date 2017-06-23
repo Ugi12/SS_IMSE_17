@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DBManager;
 import model.Catalog;
 import model.Product;
+import mongoDao.CatalogDAO;
 import mongoDao.ProductDAO;
 
 /**
@@ -29,15 +30,17 @@ public class AdminController extends HttpServlet {
 	DBManager db = DBManager.getInstance();
 	//MONGO-DB
 	ProductDAO productDao = new ProductDAO();
+	CatalogDAO catalogDao = new CatalogDAO();
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//SQL-DB
 //		List<Product> products = db.getProductDAO().findAll();
-		List<Catalog> catalogs = db.getCatalogDAO().findAll();
+//		List<Catalog> catalogs = db.getCatalogDAO().findAll();
 		//MONGO-DB
 		List<Product> products = productDao.findAll();
-		
+		List<Catalog> catalogs = catalogDao.findAll();
+				
 		request.setAttribute("products", products);
 		request.setAttribute("catalogs", catalogs);
 		request.getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
@@ -54,7 +57,7 @@ public class AdminController extends HttpServlet {
 			
 		
 			/*
-			 * if new product button pushed then create a new product
+			 * create a new product
 			 */
 			if(request.getParameter("event").equals("createProduct") && request.getParameter("event")!=null){
 				
@@ -63,11 +66,13 @@ public class AdminController extends HttpServlet {
 				String tmp = request.getParameter("price");
 				float price = Float.valueOf(tmp);
 				String sex = request.getParameter("optradio");
-				// TODO kollektion must be entered 
+				String catalogName = request.getParameter("catalog");
+				System.out.println(catalogName);
 				p.setName(name);
 				p.setPrice(price);
 				p.setSex(sex);
 				p.setSupplierid(1);
+				p.setCatalogName(catalogName);
 				
 				//SQL-DB
 				//db.getProductDAO().create(p);
@@ -83,9 +88,16 @@ public class AdminController extends HttpServlet {
 				Catalog c = new Catalog();
 				String name = request.getParameter("name");
 				c.setName(name);
-				db.getCatalogDAO().create(c);
+				//SQL
+				//db.getCatalogDAO().create(c);
+				
+				//MONGO
+				catalogDao.create(c);
 			}
 			
+			/**
+			 * delete product
+			 */
 			if(request.getParameter("event").equals("delete") && request.getParameter("event")!=null){
 				int productId = Integer.parseInt(request.getParameter("productId"));
 				//SQL
@@ -117,13 +129,16 @@ public class AdminController extends HttpServlet {
 				rd.forward(request, response);
 			}
 			
+			/**
+			 * delete catalog
+			 */
 			if(request.getParameter("event").equals("deleteCatalog")&& request.getParameter("event")!=null){
 				
 				
-				List<Catalog> catalogs = db.getCatalogDAO().findAll();
+				List<Catalog> catalogs = catalogDao.findAll();
 				for(Catalog c : catalogs){
 					if(c.getName().equals(request.getParameter("catalogName"))){
-						db.getCatalogDAO().delete(c);
+						catalogDao.delete(c);
 					}
 				}
 			

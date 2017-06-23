@@ -39,7 +39,7 @@ public class ProductListController extends HttpServlet {
 		List<Document> products = collection.find().into(new ArrayList<Document>());
 		
 		for(Document document: products){
-			Product product = MongoDBHelper.parse(document);
+			Product product = MongoDBHelper.parseProduct(document);
 			if (product.getSex().equals("man")) {
 				productListForMan.add(product);
 			} else {

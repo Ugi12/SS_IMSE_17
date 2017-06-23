@@ -110,7 +110,7 @@ public class CustomerDAO implements DAO<Customer>{
 
 
 		
-		//TODO sql statement fehlerhaft
+		
 		String sql = (null+",'"+c.getEmail()+"','"+c.getPassword()+"','"+c.getFirstname()+"','"+c.getLastname()+"','"+c.getAddress()+"', '"+c.getCity()+"','"+c.getCountry()+"',0");
 		
 		try {

@@ -17,7 +17,7 @@ import mongoDao.DBManager;
  */
 public class NextId {
 	
-	public int getNextId(String col){
+	public static int getNextId(String col){
 		
 		int nextid = 0;
 		

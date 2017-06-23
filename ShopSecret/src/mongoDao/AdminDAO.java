@@ -14,7 +14,7 @@ import model.Admin;
 /**
  * <h1> AdminDao</h1>
  * CRUD-Funktions for Admin
- * included DB-query	
+ * 	
  * 
  * @author Ugur Yürük
  */

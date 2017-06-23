@@ -23,16 +23,17 @@ import model.Product;
  */
 public class ProductDAO implements DAO<Product> {
 	
-	NextId nextid = new NextId();
+	
 	MongoDatabase db = DBManager.getDatabase();
 
 	public void create(Product p) {
 		
-		db.getCollection("Product").insertOne(new Document().append("_id", nextid.getNextId("Product"))
+		db.getCollection("Product").insertOne(new Document().append("_id", NextId.getNextId("Product"))
 															.append("name", p.getName())
 															.append("price", p.getPrice())
 															.append("sex", p.getSex())
-															.append("supplierid", p.getSupplierid()));
+															.append("supplierid", p.getSupplierid())
+															.append("catalogName", p.getCatalogName()));
 		
 	}
 
@@ -46,7 +47,7 @@ public class ProductDAO implements DAO<Product> {
 		
 		for(Document document: products){
 			if(document.getInteger("_id") == id){
-				product = MongoDBHelper.parse(document);
+				product = MongoDBHelper.parseProduct(document);
 				return product;
 			}
 			
@@ -64,7 +65,7 @@ public class ProductDAO implements DAO<Product> {
 		List<Document> products = collection.find().into(new ArrayList<Document>());
 		
 		for(Document document: products){
-			output.add(MongoDBHelper.parse(document));
+			output.add(MongoDBHelper.parseProduct(document));
 		}
 		return output;
 	}
@@ -81,7 +82,8 @@ public class ProductDAO implements DAO<Product> {
 																new Document().append("name", p.getName())
 																			  .append("price", p.getPrice())
 																			  .append("sex", p.getSex())
-																			  .append("supplierid", p.getSupplierid())));
+																			  .append("supplierid", p.getSupplierid())
+																			  .append("catalogName", p.getCatalogName())));
 			}
 			
 		}

@@ -15,6 +15,7 @@ public class Product implements Serializable {
 	private float price;
 	private String sex;
 	private int supplierid;
+	private String catalogName;
 	
 	
 	/**
@@ -76,6 +77,18 @@ public class Product implements Serializable {
 	 */
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+	/**
+	 * @return the catalogName
+	 */
+	public String getCatalogName() {
+		return catalogName;
+	}
+	/**
+	 * @param catalogName the catalogName to set
+	 */
+	public void setCatalogName(String catalogName) {
+		this.catalogName = catalogName;
 	}
 	
 	
