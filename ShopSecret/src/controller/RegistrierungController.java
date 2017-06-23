@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DBManager;
 import model.Customer;
 
-
+/**
+ * 
+ * 
+ * @author Julian Thaler
+ */
 
 @WebServlet("/register")
 public class RegistrierungController extends HttpServlet {
