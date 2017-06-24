@@ -17,6 +17,11 @@ public class SupplierDAO implements DAO<Supplier> {
 
 	MongoDatabase db = DBManager.getDatabase();
 	
+	
+	/**
+	 * Create a new Supplier-Collection in MongoDB
+	 * 
+	 */
 	@Override
 	public void create(Supplier s) {
 		db.getCollection("Supplier").insertOne(new Document().append("_id", NextId.getNextId("Supplier"))
@@ -24,12 +29,16 @@ public class SupplierDAO implements DAO<Supplier> {
 		
 	}
 
+	
 	@Override
 	public Supplier findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("not implemented yet");
 	}
 
+	
+	/**
+	 * Returns a list of all Suppliers from MongoDB
+	 */
 	@Override
 	public List<Supplier> findAll() {
 		
@@ -47,13 +56,22 @@ public class SupplierDAO implements DAO<Supplier> {
 
 	@Override
 	public void update(Supplier object) {
-		// TODO Auto-generated method stub
+		throw new RuntimeException("not implemented yet");
 		
 	}
 
+	/**
+	 * Delete specific Supplier from MongoDB
+	 */
 	@Override
-	public void delete(Supplier object) {
-		// TODO Auto-generated method stub
+	public void delete(Supplier s) {
+		try{
+			Document query = new Document("_id", s.getId());
+					
+			db.getCollection("Supplier").deleteOne(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 

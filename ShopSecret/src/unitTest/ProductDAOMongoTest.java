@@ -6,7 +6,9 @@ import helper.NextId;
 import junit.framework.TestCase;
 import model.Product;
 import mongoDao.ProductDAO;
-
+/**
+ * @author Ugur Yürük
+ */
 public class ProductDAOMongoTest extends TestCase{
 
 	ProductDAO productDao = new ProductDAO();
@@ -14,12 +16,10 @@ public class ProductDAOMongoTest extends TestCase{
 	@Test
 	public void testCreate(){
 		
-		NextId id = new NextId();
-		
 		
 		Product product = new Product();
 		
-		product.setId(id.getNextId("Product"));
+		product.setId(NextId.getNextId("Product"));
 		product.setName("TestNamead");
 		product.setPrice(14f);
 		product.setSex("woman");
@@ -54,9 +54,5 @@ public class ProductDAOMongoTest extends TestCase{
 		productDao.update(product);
 	}
 	
-	@Test
-	public void testFindById(){
-		Product product = productDao.findById(8);
-		System.out.println("oo: "+product.getName());
-	}
+
 }

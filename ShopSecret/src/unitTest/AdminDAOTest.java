@@ -7,7 +7,9 @@ import org.junit.Test;
 import junit.framework.TestCase;
 import model.Admin;
 import mongoDao.AdminDAO;
-
+/**
+ * @author Ugur Yürük
+ */
 public class AdminDAOTest extends TestCase{
 	
 	@Test
@@ -17,7 +19,11 @@ public class AdminDAOTest extends TestCase{
 		List<Admin> admins = a.findAll();
 		
 		for(Admin ad : admins){
-			System.out.println(ad.getUsername() +" "+ ad.getPassword());
+			if(ad.getUsername().equals("admin")){
+				assertEquals("admin", ad.getUsername());
+				assertEquals("admin", ad.getPassword());
+			}
+			
 		}
 		
 	}

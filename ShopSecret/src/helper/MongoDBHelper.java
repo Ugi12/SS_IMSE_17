@@ -21,6 +21,7 @@ public class MongoDBHelper {
 		product.setPrice(result.getDouble("price").floatValue());
 		product.setSex(result.getString("sex"));
 		product.setSupplierid(result.getInteger("supplierid"));
+		product.setCatalogName(result.getString("catalogName"));
 
 		return product;
 	}

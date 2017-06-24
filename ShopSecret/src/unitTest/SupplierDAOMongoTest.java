@@ -6,6 +6,9 @@ import junit.framework.TestCase;
 import model.Supplier;
 import mongoDao.SupplierDAO;
 
+/**
+ * @author Ugur Yürük
+ */
 public class SupplierDAOMongoTest extends TestCase{
 
 	SupplierDAO supplierDao = new SupplierDAO();
@@ -13,7 +16,10 @@ public class SupplierDAOMongoTest extends TestCase{
 	@Test
 	public void testCreateSupplier(){
 		Supplier s = new Supplier();
-		s.setName("Ugi da Expesser");
+		s.setName("Ugi da ExpressLieferer");
 		supplierDao.create(s);
+		
+		supplierDao.findAll();
 	}
+	
 }

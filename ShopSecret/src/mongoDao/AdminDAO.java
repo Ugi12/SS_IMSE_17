@@ -14,7 +14,6 @@ import model.Admin;
 /**
  * <h1> AdminDao</h1>
  * CRUD-Funktions for Admin
- * 	
  * 
  * @author Ugur Yürük
  */
@@ -33,6 +32,9 @@ public class AdminDAO implements DAO<Admin> {
 		throw new RuntimeException("not implemented yet");
 	}
 
+	/**
+	 * Returns a list of all Admins from MongoDB
+	 */
 	@Override
 	public List<Admin> findAll() {
 		List<Admin> output = new ArrayList<>();
@@ -52,7 +54,7 @@ public class AdminDAO implements DAO<Admin> {
 
 	@Override
 	public void update(Admin object) {
-		// TODO Auto-generated method stub
+		throw new RuntimeException("not implemented yet");
 		
 	}
 

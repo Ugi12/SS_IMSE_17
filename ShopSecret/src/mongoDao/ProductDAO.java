@@ -16,7 +16,7 @@ import model.Product;
 
 /**
  * <h1> ProductDAO</h1>
- * CRUD-Funktions for Admin
+ * CRUD-Funktions for Product
  * included DB-query	
  * 
  * @author Ugur Yürük
@@ -33,9 +33,11 @@ public class ProductDAO implements DAO<Product> {
 															.append("sex", p.getSex())
 															.append("supplierid", p.getSupplierid())
 															.append("catalogName", p.getCatalogName()));
-		
 	}
 
+	/**
+	 * Find a specific Product by Id
+	 */
 	@Override
 	public Product findById(int id) {
 		Product product = new Product();
@@ -47,12 +49,14 @@ public class ProductDAO implements DAO<Product> {
 				product = MongoDBHelper.parseProduct(document);
 				return product;
 			}
-			
 		}
 		return null;
-		
 	}
 
+
+	/**
+	 * Returns a list of all Products from MongoDB
+	 */
 	@Override
 	public List<Product> findAll() {
 		List<Product> output = new ArrayList<>();
@@ -88,6 +92,10 @@ public class ProductDAO implements DAO<Product> {
 	}
 	
 
+	
+	/**
+	 * Update a specific Product
+	 */
 	@Override
 	public void update(Product p) {
 				
@@ -101,12 +109,15 @@ public class ProductDAO implements DAO<Product> {
 																			  .append("supplierid", p.getSupplierid())
 																			  .append("catalogName", p.getCatalogName())));
 			}
-			
 		}
 		
 		
 	}
 
+	
+	/**
+	 * Delete a specific Product
+	 */
 	@Override
 	public void delete(Product p) {
 		try{
@@ -116,7 +127,6 @@ public class ProductDAO implements DAO<Product> {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-			
 	}
 
 }
