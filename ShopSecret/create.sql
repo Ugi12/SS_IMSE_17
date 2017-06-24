@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 08. Jun 2017 um 19:40
+-- Erstellungszeit: 24. Jun 2017 um 17:16
 -- Server-Version: 10.1.21-MariaDB
 -- PHP-Version: 5.6.30
 
@@ -75,7 +75,8 @@ CREATE TABLE `catalog` (
 --
 
 INSERT INTO `catalog` (`name`, `ArticleQuantity`) VALUES
-('Jacke', 10);
+('Jacke', 10),
+('katname99', 0);
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,12 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`id`, `email`, `password`, `firstname`, `lastname`, `address`, `city`, `country`, `isClosed`) VALUES
 (1, 'ugi@gmail.com', 'admin', 'ugur', 'yuruk', 'lagestrasse', 'vienna', 'Austria', 0),
-(2, 'test@mail.com', '123456', 'ugi', 'yuruk', 'lagestrasse', 'wien', 'Österreich', 0);
+(2, 'test@mail.com', '123456', 'ugi', 'yuruk', 'lagestrasse', 'wien', 'Österreich', 0),
+(3, 'ugur@shopsecret.com', 'admin', 'ugur', 'yuruk', 'sensengasse', 'wien', 'Oesterreich', 0),
+(4, 'Dfasdfasdf', '1234', 'And', 'Asdf', 'Adfadfasd', 'sdfd', 'sdff', 0),
+(5, 'ugur.yuruk@mail.com', '1234', 'Ugur', 'Yürük', 'Lagestrasse', 'Wien', 'Österreich', 0),
+(6, 'Asdfadfadf', '2222', 'Hahaah', 'Asdjfasdf', 'Adfadsf', 'Asdfasdf', 'Adfadf', 0),
+(7, 'haji@haji.com', '12345', 'Haji', 'Osman', 'Asdf', 'Asdfasdf', 'sdfadf', 0);
 
 -- --------------------------------------------------------
 
@@ -199,7 +205,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `price`, `sex`, `supplierid`) VALUES
-(1, 'nike', 60, '', NULL);
+(2, 'ugi55', 3433, 'man', 1),
+(10, 'Olleyyy', 46, 'man', 1),
+(11, 'Adidas Jacke', 69.9, 'man', 1),
+(12, 'sdfff', 33, 'woman', 1),
+(13, 'Product xyzzy', 8999, 'man', 1);
 
 -- --------------------------------------------------------
 
@@ -323,7 +333,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT für Tabelle `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT für Tabelle `lineitem`
 --
@@ -343,7 +353,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT für Tabelle `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT für Tabelle `supplier`
 --

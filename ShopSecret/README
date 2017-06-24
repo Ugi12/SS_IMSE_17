@@ -1,0 +1,49 @@
+/*
+ *Autor Ugur Yürük
+ *
+ */
+
+
+Anleitung für SecretShop-Webproject
+
+
+    
+DB: Datenbank starten.
+    SQL:
+        Phpmyadmin installieren und starten.
+        In dem Projekt root Ordner befindet sich create.sql, diese in phpmyadmin importieren.
+        Testdaten sind vorhanden
+    NoSQL:
+        MongoDB via Terminal installieren und starten.
+        RoboMongo installieren und starten.
+        Neue Verbindung herstellen 
+
+
+        
+Eclispe:
+    starte Eclipse.
+    lade das Projekt vom https://github.com/Ugi12/SS_IMSE_17.git
+       
+    
+    Benötigte libraries: 
+        "bson-3.4.2.jar"
+        "mongodb-driver-3.4.2.jar"
+        "mongodb-driver-core-3.4.2.jar"
+        "eclipselink.jar"
+        "mysql-connector-java-5.1.37-bin.jar"
+        
+        info: Die Jar-Files sind unter ../WEB-INF/lib gespeichert. Zu beginn alle Jar-Files in classpath einfügen.
+        
+        
+    Start:
+        geh auf das Projekt CarRent_SOAP und finde unter "CarRent_SOAP/WebContent/" rechtsklick auf "index.jsp" Run As > Run on Server.
+        
+Admin zugangsdaten:
+    username: admin
+    passwort: admin
+    
+Für neuen User, geh auf Registrieren.
+
+    
+Enjoy SecretShop 
+        
