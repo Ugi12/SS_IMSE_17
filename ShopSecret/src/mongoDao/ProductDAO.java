@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.bson.Document;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 import dao.DAO;
 import helper.MongoDBHelper;
@@ -22,13 +22,12 @@ import model.Product;
  * @author Ugur Yürük
  */
 public class ProductDAO implements DAO<Product> {
-	
-	
-	MongoDatabase db = DBManager.getDatabase();
+
+	MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Product");
 
 	public void create(Product p) {
 		
-		db.getCollection("Product").insertOne(new Document().append("_id", NextId.getNextId("Product"))
+		collection.insertOne(new Document().append("_id", NextId.getNextId("Product"))
 															.append("name", p.getName())
 															.append("price", p.getPrice())
 															.append("sex", p.getSex())
@@ -40,9 +39,7 @@ public class ProductDAO implements DAO<Product> {
 	@Override
 	public Product findById(int id) {
 		Product product = new Product();
-		
-		MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Product");
-		
+				
 		List<Document> products = collection.find().into(new ArrayList<Document>());
 		
 		for(Document document: products){
@@ -59,9 +56,7 @@ public class ProductDAO implements DAO<Product> {
 	@Override
 	public List<Product> findAll() {
 		List<Product> output = new ArrayList<>();
-		
-		MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Product");
-		
+				
 		List<Document> products = collection.find().into(new ArrayList<Document>());
 		
 		for(Document document: products){
@@ -69,16 +64,37 @@ public class ProductDAO implements DAO<Product> {
 		}
 		return output;
 	}
+	
+	public List<Product> findAllManProduct() {
+		return findAllWomanOrManProduct("man");
+	}
+	
+	public List<Product> findAllWomanProduct() {
+		return findAllWomanOrManProduct("woman");
+	}
+	
+	private List<Product> findAllWomanOrManProduct(String manOrWoman) {
+		List<Product> output = new ArrayList<>();
+
+		BasicDBObject whereQuery = new BasicDBObject();
+		whereQuery.put("sex", manOrWoman);
+		
+		List<Document> products = collection.find(whereQuery).into(new ArrayList<Document>());
+		
+		for(Document document: products){
+			output.add(MongoDBHelper.parseProduct(document));
+		}
+		return output;
+	}
+	
 
 	@Override
 	public void update(Product p) {
-		
-		MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Product");
-		
+				
 		List<Document> products = collection.find().into(new ArrayList<Document>());
 		for(Document document: products){
 			if(document.getInteger("_id") == p.getId()){
-				db.getCollection("Product").updateOne(document, new Document("$set", 
+				collection.updateOne(document, new Document("$set", 
 																new Document().append("name", p.getName())
 																			  .append("price", p.getPrice())
 																			  .append("sex", p.getSex())
@@ -89,8 +105,6 @@ public class ProductDAO implements DAO<Product> {
 		}
 		
 		
-
-		
 	}
 
 	@Override
@@ -98,7 +112,7 @@ public class ProductDAO implements DAO<Product> {
 		try{
 			Document query = new Document("_id", p.getId());
 					
-			db.getCollection("Product").deleteOne(query);
+			collection.deleteOne(query);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

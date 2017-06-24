@@ -11,7 +11,6 @@ import com.mongodb.client.MongoDatabase;
 import dao.DAO;
 import helper.MongoDBHelper;
 import helper.NextId;
-import model.Product;
 import model.Supplier;
 
 public class SupplierDAO implements DAO<Supplier> {

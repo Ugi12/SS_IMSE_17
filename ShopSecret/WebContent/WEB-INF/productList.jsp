@@ -40,8 +40,8 @@ Layout für Product-Seite
 			  		</div>
            		    <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
 				   		<input type="hidden" name="productId_2" value="<%=p.getId()%>" />
-				  		<input type="hidden" name="event" value="warenkorp" />
-				  		<button type="submit" value="warenkorp" class="btn btn-default">Warenkorp</button>
+				  		<input type="hidden" name="event" value="warenkorb" />
+				  		<button type="submit" value="warenkorb" class="btn btn-default">Warenkorb</button>
 				  	</form>
 				</div>
 				<%} %>
@@ -53,7 +53,7 @@ Layout für Product-Seite
 
       <!-- example mocked cart -->
 			<div id="cd-cart">
-				<h2>Warenkorp</h2>
+				<h2>Warenkorb</h2>
 				<ul class="cd-cart-items">
 						<li>
 							<input type='button' value='-' class='qtyminus' field='quantity' />
