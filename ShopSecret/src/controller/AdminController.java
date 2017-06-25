@@ -59,7 +59,6 @@ public class AdminController extends HttpServlet {
 		Boolean edited = false;
 		
 		try{
-			
 		
 			/*
 			 * create a new product

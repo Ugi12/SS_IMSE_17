@@ -104,12 +104,6 @@ List<Supplier> suppliers = (List<Supplier>)request.getAttribute("suppliers");
 				  		<button type="submit" value="edit" class="btn btn-default">Bearbeiten</button>
 
 				  	</form>
-            <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-				   		<input type="hidden" name="productId_2" value="<%=p.getId()%>" />
-				  		<input type="hidden" name="event" value="warenkorp" />
-				  		<button type="submit" value="warenkorp" class="btn btn-default">Warenkorb</button>
-
-				  	</form>
 				</div>
 				<%} %>
 			  <%} %>
@@ -152,50 +146,7 @@ List<Supplier> suppliers = (List<Supplier>)request.getAttribute("suppliers");
 			  	</div>
 		 		</form>
 			</div>
-			
-      <div id="cd-shadow-layer"></div>
-
-      <!-- example mocked cart -->
-			<div id="cd-cart">
-				<h2>Warenkorb</h2>
-				<ul class="cd-cart-items">
-						<li>
-							<input type='button' value='-' class='qtyminus' field='quantity' />
-							<span class="cd-qty">1x</span>
-							<input type='button' value='+' class='qtyplus' field='quantity' />
-
-							Product Name
-
-							<div class="cd-price">$9.99</div>
-							<a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-						</li>
-
-						<li>
-							<span class="cd-qty">2x</span> Product Name
-							<div class="cd-price">$19.98</div>
-							<a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-						</li>
-
-						<li>
-							<span class="cd-qty">1x</span> Product Name
-							<div class="cd-price">$9.99</div>
-							<a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-						</li>
-				</ul> <!-- cd-cart-items -->
-
-				<div class="cd-cart-total">
-					<p>Total <span>$39.96</span></p>
-				</div> <!-- cd-cart-total -->
-
-				<a href="#0" class="checkout-btn">Checkout</a>
-
-				<p class="cd-go-to-cart"><a href="#0">Go to cart page</a></p>
-			</div> <!-- cd-cart -->
-
-
 		</div>
-		
-		
 		
 		<div class="panel panel-default" style="width: 100%; float: left; padding: 10px;">
 			<div class="input-group">

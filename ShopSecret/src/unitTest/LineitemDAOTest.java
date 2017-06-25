@@ -19,8 +19,7 @@ public class LineitemDAOTest extends TestCase{
 	public void testCreate(){
 		
 		Lineitem lineitem = new Lineitem();
-		lineitem.setName("calvindick");
-		lineitem.setPrice(39);
+		lineitem.setProductid(1);
 		lineitem.setQuantity(1);
 		lineitem.setCartid(1);
 		
@@ -29,7 +28,7 @@ public class LineitemDAOTest extends TestCase{
 		List<Lineitem> items = db.getLineitemDAO().findAll();
 		for(Lineitem item: items){
 			if(item.getId()==1){
-				assertEquals(39, item.getPrice());
+				assertEquals(1, item.getProductid());
 			}
 		}
 	}
@@ -37,15 +36,14 @@ public class LineitemDAOTest extends TestCase{
 	@Test
 	public void testDelete(){
 		Lineitem l = new Lineitem();
-		l.setName("calvin klein");
-		l.setPrice(39);
+		l.setProductid(1);
 		l.setQuantity(1);
 		l.setCartid(1);
 		//db.getLineitemDAO().create(l);
 		
 		List<Lineitem> items = db.getLineitemDAO().findAll();
 		for(Lineitem item: items){
-			if(item.getName().equals("calvin klein")){
+			if(item.getProductid() == 1){
 				db.getLineitemDAO().delete(l);
 				
 			}

@@ -30,15 +30,12 @@ public class LineitemDAO implements DAO<Lineitem> {
 	public void create(Lineitem object) {
 		if (object == null)
 			throw new IllegalArgumentException("object missing");
-		if (object.getName() == null || object.getName().trim().length() < 3)
-			throw new IllegalArgumentException("name too short");
-
 		
-		String sql = (null+", '"+object.getName()+"', '"+object.getQuantity() +"','"+object.getPrice()+"', "
+		String sql = (null+", '"+object.getQuantity()+"','"+object.getProductid()+"', "
 						  		+ "'"+object.getCartid()+"'");
 		
 		try {
-			db.getConnection().createStatement().executeUpdate("INSERT INTO lineitem(id,name,quantity,price,cartid) VALUES("+ sql +");");
+			db.getConnection().createStatement().executeUpdate("INSERT INTO lineitem(id,quantity,product,cartid) VALUES("+ sql +");");
 		} catch (MySQLIntegrityConstraintViolationException e) {
 			System.out.println(e.getMessage());
 			throw new IllegalArgumentException("item already in use");
@@ -103,7 +100,7 @@ public class LineitemDAO implements DAO<Lineitem> {
 		Lineitem lineitem = new Lineitem();
 		lineitem.setId(result.getInt("id"));
 		lineitem.setQuantity(result.getInt("quantity"));
-		lineitem.setPrice(result.getFloat("price"));
+		lineitem.setProductid(result.getInt("productid"));
 		lineitem.setCartid(result.getInt("cartid"));
 
 		return lineitem;

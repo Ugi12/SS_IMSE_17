@@ -76,6 +76,32 @@ public class ProductDAO implements DAO<Product> {
 		}
 		return output;
 	}
+	
+	public List<Product> findAllManProduct() {
+		return findAllWomanOrManProduct("man");
+	}
+	
+	public List<Product> findAllWomanProduct() {
+		return findAllWomanOrManProduct("woman");
+	}
+	
+	private List<Product> findAllWomanOrManProduct(String manOrWoman) {
+		List<Product> output = new ArrayList<>();
+		
+		try {
+			ResultSet result = db.getConnection().createStatement().executeQuery("SELECT * product WHERE sex="+ manOrWoman);
+
+			while (result.next())
+				output.add(parse(result));
+			
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			throw new IllegalArgumentException("Product konnte nicht verändert werden");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return output;
+	}
 
 	@Override
 	public void update(Product p) {

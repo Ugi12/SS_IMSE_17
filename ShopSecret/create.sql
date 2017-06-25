@@ -49,6 +49,7 @@ INSERT INTO `admin` (`username`, `password`) VALUES
 CREATE TABLE `cart` (
   `id` int(10) NOT NULL,
   `created` date NOT NULL,
+  `total` float(10) NOT NULL,
   `customerid` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -56,8 +57,8 @@ CREATE TABLE `cart` (
 -- Daten für Tabelle `cart`
 --
 
-INSERT INTO `cart` (`id`, `created`, `customerid`) VALUES
-(1, '2017-05-29', 1);
+INSERT INTO `cart` (`id`, `created`, `total`, `customerid`) VALUES
+(1, '2017-05-29', 60, 1);
 
 -- --------------------------------------------------------
 
@@ -106,14 +107,34 @@ INSERT INTO `customer` (`id`, `email`, `password`, `firstname`, `lastname`, `add
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `price` float NOT NULL,
+  `sex` varchar(10) NOT NULL,
+  `supplierid` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `price`, `sex`, `supplierid`) VALUES
+(1, 'nike', 60, '', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `lineitem`
 --
 
 CREATE TABLE `lineitem` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `price` float NOT NULL,
+  `productid` varchar(30) NOT NULL,
   `cartid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -121,8 +142,8 @@ CREATE TABLE `lineitem` (
 -- Daten für Tabelle `lineitem`
 --
 
-INSERT INTO `lineitem` (`id`, `name`, `quantity`, `price`, `cartid`) VALUES
-(1, '', 1, 10, 1);
+INSERT INTO `lineitem` (`id`, `quantity`, `productid`, `cartid`) VALUES
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -179,27 +200,6 @@ CREATE TABLE `payment` (
 
 INSERT INTO `payment` (`id`, `details`, `total`, `paiddate`, `customerid`) VALUES
 (1, 'payment details Test test test', 199, '2017-05-29', 1);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `product`
---
-
-CREATE TABLE `product` (
-  `id` int(10) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `price` float NOT NULL,
-  `sex` varchar(10) NOT NULL,
-  `supplierid` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Daten für Tabelle `product`
---
-
-INSERT INTO `product` (`id`, `name`, `price`, `sex`, `supplierid`) VALUES
-(1, 'nike', 60, '', NULL);
 
 -- --------------------------------------------------------
 

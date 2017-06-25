@@ -8,15 +8,12 @@ import java.io.Serializable;
  */
 public class Lineitem implements Serializable {
 
-
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private String name;
 	private int quantity;
-	private float price;
+	private int productid;
 	private int cartid;
-	
 	
 	/**
 	 * @return the id
@@ -43,16 +40,16 @@ public class Lineitem implements Serializable {
 		this.quantity = quantity;
 	}
 	/**
-	 * @return the price
+	 * @return the productid
 	 */
-	public float getPrice() {
-		return price;
+	public float getProductid() {
+		return productid;
 	}
 	/**
-	 * @param price the price to set
+	 * @param productid the productid
 	 */
-	public void setPrice(float price) {
-		this.price = price;
+	public void setProductid(int productid) {
+		this.productid = productid;
 	}
 	/**
 	 * @return the cartid
@@ -66,21 +63,5 @@ public class Lineitem implements Serializable {
 	public void setCartid(int cartid) {
 		this.cartid = cartid;
 	}
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	
-	
-	
 
 }
