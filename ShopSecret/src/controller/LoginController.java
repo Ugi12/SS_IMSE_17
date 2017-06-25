@@ -13,6 +13,7 @@ import dao.DBManager;
 import model.Admin;
 import model.Customer;
 import mongoDao.AdminDAO;
+import mongoDao.CustomerDAO;
 
 /**
  * this class is the endpoint for servicing requests from path login
@@ -24,9 +25,7 @@ public class LoginController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	public LoginController() {
-        super();
-    }
+	private DBManager db = DBManager.getInstance();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -49,18 +48,18 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		
 		request.getSession().invalidate();
-		DBManager db = DBManager.getInstance();
 		/**
 		 * SQL-DB
 		 */
-//		List<Admin> adminlist = db.getAdminDAO().findAll();
-//		List<Customer> customerlist = db.getCustomerDAO().findAll();
+		/*List<Admin> adminlist = db.getAdminDAO().findAll();
+		List<Customer> customerlist = db.getCustomerDAO().findAll();*/
 		/**
 		 * Mongo-DB
 		 */
 		AdminDAO adminDao = new AdminDAO();
+		CustomerDAO customerDao = new CustomerDAO();
 		List<Admin> adminlist = adminDao.findAll();
-		List<Customer> customerlist = db.getCustomerDAO().findAll();
+		List<Customer> customerlist = customerDao.findAll();
 		
 		String loginEmail =request.getParameter("loginEmail");
 		String loginPasswort =request.getParameter("loginPasswort");

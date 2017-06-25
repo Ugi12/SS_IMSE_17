@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,7 +25,8 @@ import mongoDao.SupplierDAO;
 @WebServlet("/editcontroller")
 public class EditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    DBManager db = DBManager.getInstance();
+    
+	DBManager db = DBManager.getInstance();
 	CatalogDAO catalogDao = new CatalogDAO();
 	SupplierDAO supplierDao = new SupplierDAO();
   
@@ -33,6 +35,12 @@ public class EditController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("product", request.getAttribute("product"));
+		
+		//SQL BASED
+		/*request.setAttribute("catalogs", db.getCatalogDAO().findAll());
+		request.setAttribute("suppliers", db.getSuplierDAO().findAll());*/
+		
+		//MONGO DB
 		request.setAttribute("catalogs", catalogDao.findAll());
 		request.setAttribute("suppliers", supplierDao.findAll());
 		request.getRequestDispatcher("/WEB-INF/editproduct.jsp").forward(request, response);
@@ -56,8 +64,13 @@ public class EditController extends HttpServlet {
 			p.setId(Integer.parseInt(request.getParameter("id")));
 			p.setCatalogName(request.getParameter("catalog"));
 			
+			//SQL
+			//List<Supplier> suppliers = db.getSuplierDAO().findAll();
 			
-			for(Supplier s : supplierDao.findAll()){
+			//MONGO
+			List<Supplier> suppliers = supplierDao.findAll();
+			
+			for(Supplier s : suppliers){
 				if(s.getName().equals(request.getParameter("supplierName"))){
 					p.setSupplierid(s.getId());
 				}

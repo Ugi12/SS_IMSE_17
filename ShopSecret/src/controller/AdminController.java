@@ -38,8 +38,9 @@ public class AdminController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//SQL-DB
-//		List<Product> products = db.getProductDAO().findAll();
-//		List<Catalog> catalogs = db.getCatalogDAO().findAll();
+		/*List<Product> products = db.getProductDAO().findAll();
+		List<Catalog> catalogs = db.getCatalogDAO().findAll();
+		List<Supplier> suppliers = db.getSuplierDAO().findAll();*/
 		//MONGO-DB
 		List<Product> products = productDao.findAll();
 		List<Catalog> catalogs = catalogDao.findAll();
@@ -145,10 +146,17 @@ public class AdminController extends HttpServlet {
 			 */
 			if(request.getParameter("event").equals("deleteCatalog")&& request.getParameter("event")!=null){
 				
+				//SQL
+				//List<Catalog> catalogs = db.getCatalogDAO().findAll();
 				
+				//MONGO
 				List<Catalog> catalogs = catalogDao.findAll();
 				for(Catalog c : catalogs){
 					if(c.getName().equals(request.getParameter("catalogName"))){
+						//SQL
+						//db.getCatalogDAO().delete(c);
+						
+						//MONGO
 						catalogDao.delete(c);
 					}
 				}
@@ -161,6 +169,9 @@ public class AdminController extends HttpServlet {
 			if(request.getParameter("event").equals("createSupplier") && request.getParameter("event")!=null){
 				Supplier supplier = new Supplier();
 				supplier.setName(request.getParameter("name"));
+				//SQL
+				//db.getSuplierDAO().create(supplier);
+				//MONGO
 				supplierDao.create(supplier);
 			}
 			
@@ -171,12 +182,21 @@ public class AdminController extends HttpServlet {
 			if(request.getParameter("event").equals("deleteSupplier") && request.getParameter("event")!=null){
 				Supplier supplier = new Supplier();
 				supplier.setName(request.getParameter("supplierName"));
+				//SQL
+				//List<Supplier> suppliers = db.getSuplierDAO().findAll();
+				
+				//MONGO
 				List<Supplier> suppliers = supplierDao.findAll();
 				for(Supplier s : suppliers){
 					if(s.getName().equals(request.getParameter("supplierName"))){
 						supplier.setId(s.getId());
 					}
 				}
+				
+				//SQL
+				//db.getSuplierDAO().delete(supplier);
+				
+				//MONGO
 				supplierDao.delete(supplier);
 			}
 			

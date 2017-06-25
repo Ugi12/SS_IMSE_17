@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DBManager;
 import mongoDao.ProductDAO;
 
 /**
@@ -17,6 +18,8 @@ import mongoDao.ProductDAO;
  */
 @WebServlet("/products")
 public class ProductListController extends HttpServlet {
+	
+	private DBManager db = DBManager.getInstance();
 
 	private ProductDAO productMongoDAO = new ProductDAO();
 	
@@ -28,10 +31,20 @@ public class ProductListController extends HttpServlet {
 		if(request.getParameter("type").equals("man")){
 			
 			request.setAttribute("productType","Männer Produkten");
+			
+			//SQL
+			//request.setAttribute("productList", db.getProductDAO().findAllManProduct());
+			
+			//MONGO
 			request.setAttribute("productList", productMongoDAO.findAllManProduct());
 	
 		} else {
 			request.setAttribute("productType","Frauen Produkten");
+			
+			//SQL
+			//request.setAttribute("productList", db.getProductDAO().findAllWomanProduct());
+			
+			//MONGO
 			request.setAttribute("productList", productMongoDAO.findAllWomanProduct());
 		}
 		

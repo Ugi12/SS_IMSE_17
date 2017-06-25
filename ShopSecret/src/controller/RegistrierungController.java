@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DBManager;
 import model.Customer;
+import mongoDao.CustomerDAO;
 
 /**
  * 
@@ -24,6 +25,7 @@ public class RegistrierungController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private DBManager db = DBManager.getInstance();
+	private CustomerDAO customerDAO = new CustomerDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -34,7 +36,11 @@ public class RegistrierungController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Customer> customers = db.getCustomerDAO().findAll();
+		//SQL
+		//List<Customer> customers = db.getCustomerDAO().findAll();
+		
+		//MONGO
+		List<Customer> customers = customerDAO.findAll();
 		
 		String firstname =request.getParameter("firstname");
 		String lastname =request.getParameter("lastname");
@@ -65,7 +71,11 @@ public class RegistrierungController extends HttpServlet {
 		customer.setCountry(country);
 		customer.setPassword(password);
 		
-		db.getCustomerDAO().create(customer);
+		//SQL
+		//db.getCustomerDAO().create(customer);
+		
+		//MONGO
+		customerDAO.create(customer);
 		
 		response.sendRedirect(request.getContextPath() + "/login");
 

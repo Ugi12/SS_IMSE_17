@@ -19,7 +19,12 @@ import model.Admin;
  */
 public class AdminDAO implements DAO<Admin> {
 
-	
+	private MongoCollection<Document> collection;
+
+	public AdminDAO() {
+		this.collection = DBManager.getDatabase().getCollection("Catalog");
+
+	}
 	
 	@Override
 	public void create(Admin object) {

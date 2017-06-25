@@ -89,7 +89,7 @@ public class ProductDAO implements DAO<Product> {
 		List<Product> output = new ArrayList<>();
 		
 		try {
-			ResultSet result = db.getConnection().createStatement().executeQuery("SELECT * product WHERE sex="+ manOrWoman);
+			ResultSet result = db.getConnection().createStatement().executeQuery("SELECT * FROM product WHERE sex='"+ manOrWoman + "'");
 
 			while (result.next())
 				output.add(parse(result));

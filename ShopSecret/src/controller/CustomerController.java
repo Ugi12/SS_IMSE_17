@@ -10,6 +10,7 @@ import javax.swing.DefaultButtonModel;
 
 import dao.DBManager;
 import model.Customer;
+import mongoDao.CustomerDAO;
 
 /**
  * Servlet implementation class CustomerController
@@ -19,6 +20,8 @@ public class CustomerController extends HttpServlet {
 	
 	
 	private DBManager db = DBManager.getInstance();
+	
+	private CustomerDAO customerDAO = new CustomerDAO();
 	
 	private static final long serialVersionUID = 1L;
 	

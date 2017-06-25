@@ -23,8 +23,12 @@ import model.Product;
  */
 public class ProductDAO implements DAO<Product> {
 
-	MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Product");
+	MongoCollection<Document> collection;
 
+	public ProductDAO() {
+		 collection = DBManager.getDatabase().getCollection("Product");
+	}
+	
 	public void create(Product p) {
 		
 		collection.insertOne(new Document().append("_id", NextId.getNextId("Product"))

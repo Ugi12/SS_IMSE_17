@@ -6,7 +6,6 @@ import java.util.List;
 import org.bson.Document;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 import dao.DAO;
 import helper.MongoDBHelper;
@@ -15,8 +14,11 @@ import model.Supplier;
 
 public class SupplierDAO implements DAO<Supplier> {
 
-	MongoDatabase db = DBManager.getDatabase();
-	
+	MongoCollection<Document> collection;
+
+	public SupplierDAO() {
+		 collection = DBManager.getDatabase().getCollection("Supplier");
+	}
 	
 	/**
 	 * Create a new Supplier-Collection in MongoDB
@@ -24,12 +26,11 @@ public class SupplierDAO implements DAO<Supplier> {
 	 */
 	@Override
 	public void create(Supplier s) {
-		db.getCollection("Supplier").insertOne(new Document().append("_id", NextId.getNextId("Supplier"))
+		collection.insertOne(new Document().append("_id", NextId.getNextId("Supplier"))
 															 .append("name", s.getName()));
 		
 	}
 
-	
 	@Override
 	public Supplier findById(int id) {
 		throw new RuntimeException("not implemented yet");
@@ -43,9 +44,7 @@ public class SupplierDAO implements DAO<Supplier> {
 	public List<Supplier> findAll() {
 		
 		List<Supplier> output = new ArrayList<>();
-		
-		MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Supplier");
-		
+				
 		List<Document> products = collection.find().into(new ArrayList<Document>());
 		
 		for(Document document: products){
@@ -68,7 +67,7 @@ public class SupplierDAO implements DAO<Supplier> {
 		try{
 			Document query = new Document("_id", s.getId());
 					
-			db.getCollection("Supplier").deleteOne(query);
+			collection.deleteOne(query);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

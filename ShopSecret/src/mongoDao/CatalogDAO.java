@@ -21,7 +21,12 @@ import model.Catalog;
  */
 public class CatalogDAO implements DAO<Catalog>{
 
-	MongoDatabase db = DBManager.getDatabase();
+	private MongoCollection<Document> collection;
+	
+	public CatalogDAO() {
+		this.collection = DBManager.getDatabase().getCollection("Catalog");
+	}
+
 
 	/**
 	 * Create a new Catalog-Collection in MongoDB
@@ -29,7 +34,7 @@ public class CatalogDAO implements DAO<Catalog>{
 	 */
 	@Override
 	public void create(Catalog c) {
-		db.getCollection("Catalog").insertOne(new Document().append("_id", NextId.getNextId("Catalog"))
+		collection.insertOne(new Document().append("_id", NextId.getNextId("Catalog"))
 															.append("name", c.getName()));
 	}
 
@@ -47,9 +52,7 @@ public class CatalogDAO implements DAO<Catalog>{
 	public List<Catalog> findAll() {
 		
 		List<Catalog> output = new ArrayList<>();
-		
-		MongoCollection<Document> collection = DBManager.getDatabase().getCollection("Catalog");
-		
+				
 		List<Document> catalogs = collection.find().into(new ArrayList<Document>());
 		
 		for(Document document: catalogs){
@@ -72,7 +75,7 @@ public class CatalogDAO implements DAO<Catalog>{
 		try{
 			Document query = new Document("name", c.getName());
 					
-			db.getCollection("Catalog").deleteOne(query);
+			collection.deleteOne(query);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -3,6 +3,7 @@ package helper;
 import org.bson.Document;
 
 import model.Catalog;
+import model.Customer;
 import model.Product;
 import model.Supplier;
 
@@ -38,6 +39,14 @@ public class MongoDBHelper {
 		supplier.setName(result.getString("name"));
 		
 		return supplier;
+	}
+	
+	public static Customer parseCustomer(Document result) {
+		Customer customer = new Customer();
+		customer.setId(result.getInteger("_id"));
+		customer.setFirstname(result.getString("firstname"));
+		
+		return customer;
 	}
 	
 }
