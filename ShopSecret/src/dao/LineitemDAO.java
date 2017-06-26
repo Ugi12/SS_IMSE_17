@@ -31,7 +31,7 @@ public class LineitemDAO implements DAO<Lineitem> {
 		if (object == null)
 			throw new IllegalArgumentException("object missing");
 		
-		String sql = (null+", '"+object.getQuantity()+"','"+object.getProductid()+"', "
+		String sql = (null+", '"+object.getQuantity()+"','"+object.getProduct().getId()+"', "
 						  		+ "'"+object.getCartid()+"'");
 		
 		try {
@@ -100,7 +100,8 @@ public class LineitemDAO implements DAO<Lineitem> {
 		Lineitem lineitem = new Lineitem();
 		lineitem.setId(result.getInt("id"));
 		lineitem.setQuantity(result.getInt("quantity"));
-		lineitem.setProductid(result.getInt("productid"));
+
+		lineitem.setProduct(db.getProductDAO().findById(result.getInt("productid")));
 		lineitem.setCartid(result.getInt("cartid"));
 
 		return lineitem;

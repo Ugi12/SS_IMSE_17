@@ -2,10 +2,13 @@ package helper;
 
 import org.bson.Document;
 
+import model.Cart;
 import model.Catalog;
 import model.Customer;
+import model.Lineitem;
 import model.Product;
 import model.Supplier;
+import mongoDao.ProductDAO;
 
 /**
  * this class provides parser methods for retrieved mongod models
@@ -14,6 +17,8 @@ import model.Supplier;
  *
  */
 public class MongoDBHelper {
+	
+	private static ProductDAO productDAO = new ProductDAO();
 
 	public static Product parseProduct(Document result) {
 		Product product = new Product();
@@ -47,6 +52,25 @@ public class MongoDBHelper {
 		customer.setFirstname(result.getString("firstname"));
 		
 		return customer;
+	}
+	
+	public static Cart parseCart(Document result) {
+		Cart cart = new Cart();
+		cart.setCreated(result.getDate("created"));
+		cart.setCustomerid(result.getInteger("customerid"));
+		cart.setId(result.getInteger("_id"));
+		cart.setTotal(result.getDouble("total"));
+		return cart;
+	}
+	
+	public static Lineitem parseItem(Document result) {
+		Lineitem item = new Lineitem();
+		item.setCartid(result.getInteger("cartid"));
+		item.setId(result.getInteger("_id"));
+		item.setProduct(productDAO.findById(result.getInteger("productid")));
+		item.setQuantity(result.getInteger("quantity"));
+		
+		return item;
 	}
 	
 }

@@ -17,7 +17,7 @@ public class Cart implements Serializable {
 	private int id;
 	private Date created;
 	private int customerid;
-	
+	private double total;
 	
 	/**
 	 * @return the id
@@ -57,6 +57,12 @@ public class Cart implements Serializable {
 	 */
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
 }

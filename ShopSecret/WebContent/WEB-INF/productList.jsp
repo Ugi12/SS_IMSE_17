@@ -7,6 +7,8 @@
 
 @SuppressWarnings("unchecked")
 List<Product> products = (List<Product>)request.getAttribute("productList");
+List<Lineitem> items = (List<Lineitem>)request.getAttribute("lineItems");
+Cart cart = (Cart)request.getAttribute("cart");
 %>
 
 <!--
@@ -38,9 +40,10 @@ Layout für Product-Seite
 			  		 <% out.print("Preis: " + p.getPrice()); %></br>
 			  		 <% out.print("Kollektion: " + p.getSex()); %></br>
 			  		</div>
-           		    <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/admin">
-				   		<input type="hidden" name="productId_2" value="<%=p.getId()%>" />
-				  		<input type="hidden" name="event" value="warenkorb" />
+           		    <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/products">
+				   		<input type="hidden" name="productId" value="<%=p.getId()%>" />
+				  		<input type="hidden" name="typ" value="cart" />
+				  		<input type="hidden" name="type" value="<%=p.getSex()%>" />
 				  		<button type="submit" value="warenkorb" class="btn btn-default">Warenkorb</button>
 				  	</form>
 				</div>
@@ -55,32 +58,45 @@ Layout für Product-Seite
 			<div id="cd-cart">
 				<h2>Warenkorb</h2>
 				<ul class="cd-cart-items">
-						<li>
-							<input type='button' value='-' class='qtyminus' field='quantity' />
-							<span class="cd-qty">1x</span>
-							<input type='button' value='+' class='qtyplus' field='quantity' />
-
-							Product Name
-
-							<div class="cd-price">$9.99</div>
-							<a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-						</li>
-
-						<li>
-							<span class="cd-qty">2x</span> Product Name
-							<div class="cd-price">$19.98</div>
-							<a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-						</li>
-
-						<li>
-							<span class="cd-qty">1x</span> Product Name
-							<div class="cd-price">$9.99</div>
-							<a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-						</li>
+				
+						<% for(Lineitem item : items){ %>
+							<li>
+								<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/products">
+									<input type="hidden" name="typ" value="decrease" />
+									<input type="hidden" name="itemId" value="<%=item.getId()%>" />
+									<input type="hidden" name="type" value="<%=products.get(0).getSex()%>" />
+									<input type="submit" value='-' class='qtyminus' field='quantity' />
+									<% out.print(item.getQuantity()); %>x
+								</form>
+								<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/products">
+									<input type="hidden" name="typ" value="increase" />
+									<input type="hidden" name="itemId" value="<%=item.getId()%>" />
+									<input type="hidden" name="type" value="<%=products.get(0).getSex()%>" />
+									<input type="submit" value='+' class='qtyplus' field='quantity' />
+								</form>
+	
+								<% out.print(item.getProduct().getName()); %>
+	
+								<div class="cd-price">$<% out.print(item.getProduct().getPrice()); %></div>
+								
+								<form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/products">
+									<input type="hidden" name="typ" value="remove" />
+									<input type="hidden" name="itemId" value="<%=item.getId()%>" />
+									<input type="hidden" name="type" value="<%=products.get(0).getSex()%>" />
+									<a href="#" class="cd-item-remove cd-img-replace" onclick="$(this).closest('form').submit()">Remove</a>
+								</form>
+								
+							</li>
+						<%} %>
+						
 				</ul> <!-- cd-cart-items -->
 
 				<div class="cd-cart-total">
-					<p>Total <span>$39.96</span></p>
+					<% if (cart != null) { %>
+						<p>Total <span>$<% out.print(cart.getTotal()); %></span></p>
+					<% } else { %>
+						<p>Total <span>$0</span></p>
+					<% } %>
 				</div> <!-- cd-cart-total -->
 
 				<a href="#0" class="checkout-btn">Checkout</a>

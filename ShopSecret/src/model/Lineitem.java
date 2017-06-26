@@ -12,7 +12,7 @@ public class Lineitem implements Serializable {
 	
 	private int id;
 	private int quantity;
-	private int productid;
+	private Product product;
 	private int cartid;
 	
 	/**
@@ -40,16 +40,16 @@ public class Lineitem implements Serializable {
 		this.quantity = quantity;
 	}
 	/**
-	 * @return the productid
+	 * @return the product
 	 */
-	public float getProductid() {
-		return productid;
+	public Product getProduct() {
+		return product;
 	}
 	/**
-	 * @param productid the productid
+	 * @param product the product
 	 */
-	public void setProductid(int productid) {
-		this.productid = productid;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	/**
 	 * @return the cartid
