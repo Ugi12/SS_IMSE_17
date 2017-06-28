@@ -5,6 +5,8 @@
 <%@page import="java.util.*"%>
 <%
 
+Customer credentials = (Customer)request.getSession().getAttribute("credentials");
+
 @SuppressWarnings("unchecked")
 List<Product> products = (List<Product>)request.getAttribute("productList");
 List<Lineitem> items = (List<Lineitem>)request.getAttribute("lineItems");
@@ -40,12 +42,15 @@ Layout für Product-Seite
 			  		 <% out.print("Preis: " + p.getPrice()); %></br>
 			  		 <% out.print("Kollektion: " + p.getSex()); %></br>
 			  		</div>
+			  		<% if (credentials != null && !credentials.getEmail().isEmpty()) {%>
            		    <form class="navbar-form navbar-left" method="post" action="<%=request.getContextPath()%>/products">
 				   		<input type="hidden" name="productId" value="<%=p.getId()%>" />
 				  		<input type="hidden" name="typ" value="cart" />
 				  		<input type="hidden" name="type" value="<%=p.getSex()%>" />
+				  		<input type="hidden" name="customerId" value="<%=((Customer)credentials).getId()%>" />	
 				  		<button type="submit" value="warenkorb" class="btn btn-default">Warenkorb</button>
 				  	</form>
+				  	<% } %>
 				</div>
 				<%} %>
 			  <%} %>
@@ -56,7 +61,7 @@ Layout für Product-Seite
 
       <!-- example mocked cart -->
 			<div id="cd-cart">
-				<h2>Warenkorb</h2>
+				<h2 id="warenkorb">Warenkorb</h2>
 				<ul class="cd-cart-items">
 				
 						<% for(Lineitem item : items){ %>

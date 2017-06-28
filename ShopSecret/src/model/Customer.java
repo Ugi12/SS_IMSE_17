@@ -160,5 +160,11 @@ public class Customer implements Serializable{
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
+	@Override
+	public String toString() {
+		return "[email=" + email + ", firstname=" + firstname + "]";
+	}
+	
+	
 	
 }

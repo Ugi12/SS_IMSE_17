@@ -77,17 +77,17 @@ public class LoginController extends HttpServlet {
 			}
 		}
 
-		
-		for(Customer c : customerlist){
-			if(loginEmail.trim().toLowerCase().equals(c.getEmail().trim().toLowerCase()) &&
-					loginPasswort.trim().toLowerCase().equals(c.getPassword().trim().toLowerCase())){
-		
-				request.getSession().setAttribute("credentials", c);
-				response.sendRedirect("customer");
-				found = true;
+		if (!found) {
+			for(Customer c : customerlist){
+				if(loginEmail.trim().toLowerCase().equals(c.getEmail().trim().toLowerCase()) &&
+						loginPasswort.trim().toLowerCase().equals(c.getPassword().trim().toLowerCase())){
+			
+					request.getSession().setAttribute("credentials", c);
+					response.sendRedirect("customer");
+					found = true;
+				}
 			}
 		}
-		
 		
 		if(!found){
 			doGet(request,response);

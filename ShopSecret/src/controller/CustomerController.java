@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.DefaultButtonModel;
 
 import dao.DBManager;
 import model.Customer;
@@ -36,7 +35,7 @@ public class CustomerController extends HttpServlet {
 		
 		//TODO hier weiter machen YUNUS 
 		
-		//request.getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}
 
 

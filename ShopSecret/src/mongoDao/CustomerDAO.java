@@ -9,6 +9,7 @@ import com.mongodb.client.MongoCollection;
 
 import dao.DAO;
 import helper.MongoDBHelper;
+import helper.NextId;
 import model.Customer;
 
 
@@ -29,8 +30,33 @@ public class CustomerDAO implements DAO<Customer> {
 	
 	@Override
 	public void create(Customer object) {
-		throw new RuntimeException("not implemented yet");
-		
+		if (object == null)
+			throw new IllegalArgumentException("object missing");
+		if (object.getEmail() == null || object.getEmail().trim().length() < 3)
+			throw new IllegalArgumentException("email too short");
+		if (object.getPassword() == null || object.getPassword().trim().length() < 3)
+			throw new IllegalArgumentException("password too short");
+		if (object.getFirstname() == null || object.getFirstname().trim().length() < 3)
+			throw new IllegalArgumentException("firstname too short");
+		if (object.getLastname() == null || object.getLastname().trim().length() < 3)
+			throw new IllegalArgumentException("lastname too short");
+		if (object.getAddress() == null || object.getAddress().trim().length() < 3)
+			throw new IllegalArgumentException("address too short");
+		if (object.getCity() == null || object.getCity().trim().length() < 3)
+			throw new IllegalArgumentException("city too short");
+		if (object.getCountry() == null || object.getCountry().trim().length() < 3)
+			throw new IllegalArgumentException("country too short");
+
+		object.setId(NextId.getNextId("Customer"));
+		collection.insertOne(new Document().append("_id", object.getId())
+				.append("email", object.getEmail())
+				.append("password", object.getPassword())
+				.append("firstname", object.getFirstname())
+				.append("lastname", object.getLastname())
+				.append("address", object.getAddress())
+				.append("city", object.getCity())
+				.append("country", object.getCountry())
+				);
 	}
 
 	@Override

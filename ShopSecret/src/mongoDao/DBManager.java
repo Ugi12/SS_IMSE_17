@@ -33,7 +33,6 @@ public class DBManager {
 	public static MongoDatabase getDatabase() {
 		
 		if (db == null) {
-			
 			db = new MongoClient("localhost", 27017).getDatabase("IMSE");
 			addDefaultAdmin();
 			return db;

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DBManager;
 import dao.LineitemDAO;
 import model.Cart;
+import model.Customer;
 import model.Lineitem;
 import mongoDao.CartDAO;
 import mongoDao.CustomerDAO;
@@ -37,6 +37,10 @@ public class ProductListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Customer value = (Customer) request.getSession().getAttribute("credentials");
+		int customerId = (value != null) ? value.getId() : 0;
+		
+		
 		if(request.getParameter("type").equals("man")){
 			
 			request.setAttribute("productType","Männer Produkten");
@@ -59,8 +63,8 @@ public class ProductListController extends HttpServlet {
 		
 		//TODO change customer id dynamic
 		//MONGO
-		request.setAttribute("lineItems", cartDAO.findAllLineItemsByCustomerId(1));
-		request.setAttribute("cart", cartDAO.findByCustomerId(1));
+		request.setAttribute("lineItems", cartDAO.findAllLineItemsByCustomerId(customerId));
+		request.setAttribute("cart", cartDAO.findByCustomerId(customerId));
 		request.getRequestDispatcher("/WEB-INF/productList.jsp").forward(request, response);
 		
 	}
@@ -72,12 +76,17 @@ public class ProductListController extends HttpServlet {
 			
 			boolean oldElement = false;
 			
+			String customerId = request.getParameter("customerId");
+			if (customerId == null || customerId.isEmpty()) {
+				customerId = "1"; //default
+			}
+			
 			//TODO change dynamic
-			Cart cart = cartDAO.findByCustomerId(1);
+			Cart cart = cartDAO.findByCustomerId(Integer.parseInt(customerId));
 			if (cart == null) {
 				cart = new Cart();
 				cart.setCreated(new Date());
-				cart.setCustomerid(1);
+				cart.setCustomerid(Integer.parseInt(customerId));
 				cart.setTotal(0);
 				cartDAO.create(cart);
 			}

@@ -22,6 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <%@page import="model.*"%>
 </head>
 <%
+
  Object credentials = request.getSession().getAttribute("credentials");
 
 %>
@@ -38,11 +39,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 		<div class="col-sm-5 col-md-offset-2  header-login">
 					<ul >
-						<li><a href="<%=request.getContextPath()%>/login">Login</a></li>
-						<li><a href="<%=request.getContextPath()%>/register">Registrieren</a></li>
-
-						<li><a href="WEB-INF/logout.jsp">Logout</a></li>
-
+						<% if (credentials == null) { %>
+							<li><a href="<%=request.getContextPath()%>/login">Login</a></li>
+							<li><a href="<%=request.getContextPath()%>/register">Registrieren</a></li>
+						<% } else { %>
+							<li><a href="#0">Welcome <% out.print(credentials); %></a></li>
+							<li><a href="<%=request.getContextPath()%>/logout">Logout</a></li>
+						<% } %>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -64,7 +67,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li><a class="color" href="<%=request.getContextPath()%>/products?type=woman">Frauen</a></li>
             <li><a class="color" href="<%=request.getContextPath()%>/contact">Kontakt</a></li>
             <li><a class="color" href="<%=request.getContextPath()%>/about">Über uns</a></li>
-            <li id="cd-cart-trigger"><a class="cd-img-replace" href="#0">Cart</a></li>
+            <% if (credentials != null) { %>
+           		<li id="cd-cart-trigger"><a class="cd-img-replace" href="#0">Cart</a></li>
+            <% } %>
         </ul>
      </div>
 

@@ -50,7 +50,8 @@ public class MongoDBHelper {
 		Customer customer = new Customer();
 		customer.setId(result.getInteger("_id"));
 		customer.setFirstname(result.getString("firstname"));
-		
+		customer.setEmail(result.getString("email"));
+		customer.setPassword(result.getString("password"));
 		return customer;
 	}
 	
